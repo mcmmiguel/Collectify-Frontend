@@ -1,6 +1,6 @@
 const Logo = () => {
     return (
-        <img src="/logo.png" alt="Collectify Logo" />
+        <img src="/logo-black.png" alt="Collectify Logo" />
     )
 }
 export default Logo

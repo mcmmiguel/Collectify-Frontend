@@ -13,7 +13,7 @@ export default {
         'primary-dark': '#1d4ed8', // blue-700
         'secondary-light': '#10b981', // green-500
         'secondary-dark': '#047857', // green-700
-        'background-light': '#f3f4f6', // gray-100
+        'background-light': '#ffffff', // white
         'text-light': '#1f2937', // gray-800
         'border-light': '#d1d5db', // gray-300
         'success-light': '#10b981', // green-500

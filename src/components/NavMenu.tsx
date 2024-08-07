@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 import { Popover, Transition, Switch, PopoverButton, PopoverPanel } from '@headlessui/react'
 import { Bars3Icon } from '@heroicons/react/20/solid'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { User } from '../types'
 
 type NavMenuProps = {
@@ -12,9 +12,16 @@ type NavMenuProps = {
 
 const NavMenu = ({ checked, onChange, name }: NavMenuProps) => {
 
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        localStorage.removeItem('AUTH_TOKEN');
+        navigate('/auth/login');
+    }
+
     return (
         <Popover className="relative">
-            <PopoverButton className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 p-1 rounded-lg bg-secondary-light">
+            <PopoverButton className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 p-1 rounded-lg bg-primary-light">
                 <Bars3Icon className='w-8 h-8 text-white ' />
             </PopoverButton>
 
@@ -41,7 +48,7 @@ const NavMenu = ({ checked, onChange, name }: NavMenuProps) => {
                         <button
                             className='block p-2 dark:text-text-dark hover:text-hover-link-light hover:dark:text-hover-link-dark'
                             type='button'
-                            onClick={() => { }}
+                            onClick={handleLogout}
                         >
                             Log out
                         </button>

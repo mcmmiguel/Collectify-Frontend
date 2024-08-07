@@ -9,7 +9,7 @@ const AuthLayout = () => {
             <div className="min-h-screen">
                 <div className="py-10 lg:py-5 mx-auto w-[450px]">
                     <div className="h-20 flex justify-center">
-                        <Logo />
+                        <Logo darkMode={false} />
                     </div>
 
                     <div className="mt-5" >

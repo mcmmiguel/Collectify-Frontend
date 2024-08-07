@@ -31,11 +31,10 @@ const RegisterView = () => {
 
     const handleRegister = (formData: UserRegisterForm) => mutate(formData);
 
-
     return (
         <>
-            <h1 className="text-5xl font-black text-text-light dark:text-text-dark">Sign Up</h1>
-            <p className="text-xl font-light text-text-light mt-5">
+            <h1 className="text-2xl text-center font-black text-text-light dark:text-text-dark">Sign Up</h1>
+            <p className="text-xl text-center font-light text-text-light mt-5">
                 Complete the form to{''}
                 <span className=" text-primary-light font-bold"> create your account.</span>
             </p>

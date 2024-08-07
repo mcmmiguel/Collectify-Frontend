@@ -18,6 +18,19 @@ export async function login(formData: UserLoginForm) {
     try {
         const url = '/auth/login';
         const { data } = await api.post<string>(url, formData);
+        localStorage.setItem('AUTH_TOKEN', data);
+        return data;
+    } catch (error) {
+        if (isAxiosError(error) && error.response) {
+            throw new Error(error.response.data.error);
+        }
+    }
+}
+
+export async function getUser() {
+    try {
+        const url = '/auth/user';
+        const { data } = await api<string>(url);
         return data;
     } catch (error) {
         if (isAxiosError(error) && error.response) {

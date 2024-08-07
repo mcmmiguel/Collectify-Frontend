@@ -1,7 +1,9 @@
-import { Outlet } from "react-router-dom"
+import { Navigate, Outlet } from "react-router-dom"
 import Logo from "@/components/Logo"
 import NavMenu from "@/components/NavMenu"
 import { useEffect, useState } from "react";
+import { useAuth } from '../hooks/useAuth';
+import LoadingSpinner from "@/components/LoadingSpinner";
 
 const AppLayout = () => {
 
@@ -15,7 +17,13 @@ const AppLayout = () => {
         }
     }, [enabledDarkMode]);
 
-    return (
+    const { data, isLoading, isError } = useAuth();
+
+    if (isLoading) return <LoadingSpinner />;
+
+    if (isError) return <Navigate to={'/auth/login'} />
+
+    if (data) return (
         <>
             <header className="bg-background-dark border-b-border-dark">
                 <div className="max-w-screen-xl mx-auto flex flex-col lg:flex-row justify-between items-center">

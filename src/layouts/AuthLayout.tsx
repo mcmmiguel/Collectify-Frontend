@@ -12,7 +12,7 @@ const AuthLayout = () => {
                         <Logo darkMode={false} />
                     </div>
 
-                    <div className="mt-5" >
+                    <div className="mt-3" >
                         <Outlet />
                     </div>
                 </div>

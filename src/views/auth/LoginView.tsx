@@ -93,12 +93,15 @@ const LoginView = () => {
             </form>
 
             <nav className="mt-10 flex flex-col space-y-4">
-                <Link
-                    className="text-center text-text-light dark:text-text-dark font-normal"
-                    to={'/auth/register'}
-                >
-                    You don't have an account? Sign Up!
-                </Link>
+                <p className="text-center text-text-light dark:text-text-dark font-normal">
+                    You don't have an account? {''}
+                    <Link
+                        to={'/auth/register'}
+                        className="text-link-light hover:text-hover-link-light"
+                    >
+                        Sign Up
+                    </Link>
+                </p>
             </nav>
         </>
     )

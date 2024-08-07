@@ -34,14 +34,14 @@ const RegisterView = () => {
     return (
         <>
             <h1 className="text-2xl text-center font-black text-text-light dark:text-text-dark">Sign Up</h1>
-            <p className="text-xl text-center font-light text-text-light mt-5">
+            <p className="text-xl text-center font-light text-text-light mt-2">
                 Complete the form to{''}
                 <span className=" text-primary-light font-bold"> create your account.</span>
             </p>
 
             <form
                 onSubmit={handleSubmit(handleRegister)}
-                className="space-y-8 p-10 mt-5 rounded-lg border-border-light border dark:bg-background-dark"
+                className="space-y-8 p-10 mt-2 rounded-lg border-border-light border dark:bg-background-dark"
                 noValidate
             >
 
@@ -137,12 +137,15 @@ const RegisterView = () => {
             </form>
 
             <nav className="mt-10 flex flex-col space-y-4">
-                <Link
-                    className="text-center text-text-light dark:text-text-dark font-normal"
-                    to={'/auth/login'}
-                >
-                    Do you already have an account? Sign in!
-                </Link>
+                <p className="text-center text-text-light dark:text-text-dark font-normal">
+                    Do you already have an account? {''}
+                    <Link
+                        to={'/auth/login'}
+                        className="text-link-light hover:text-hover-link-light"
+                    >
+                        Sign in
+                    </Link>
+                </p>
             </nav>
         </>
     )

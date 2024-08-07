@@ -31,7 +31,7 @@ const AppLayout = () => {
                         <Logo />
                     </div>
 
-                    <NavMenu checked={enabledDarkMode} onChange={setEnabledDarkMode} />
+                    <NavMenu checked={enabledDarkMode} onChange={setEnabledDarkMode} name={data.name} />
                 </div>
             </header>
 

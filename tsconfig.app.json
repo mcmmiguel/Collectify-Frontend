@@ -34,6 +34,9 @@
       "@/hooks/*": [
         "hooks/*"
       ],
+      "@/context/*": [
+        "context/*"
+      ],
     },
     /* Bundler mode */
     "moduleResolution": "bundler",

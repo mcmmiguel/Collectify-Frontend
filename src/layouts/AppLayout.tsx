@@ -1,12 +1,9 @@
-import { Outlet, useNavigate } from "react-router-dom";
 import Logo from "@/components/Logo";
 import NavMenu from "@/components/NavMenu";
-import { useEffect, useState } from "react";
-import { useAuth } from '../hooks/useAuth';
-import LoadingSpinner from "@/components/LoadingSpinner";
+import { ReactNode, useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
 
-const AppLayout = () => {
+const AppLayout = ({ children }: { children: ReactNode }) => {
 
     const [enabledDarkMode, setEnabledDarkMode] = useState(false);
 
@@ -18,20 +15,7 @@ const AppLayout = () => {
         }
     }, [enabledDarkMode]);
 
-    const navigate = useNavigate();
-
-    const { data, isLoading, isError, error } = useAuth();
-
-    useEffect(() => {
-        if (isError) {
-            const errorMessage = error?.message === 'Unauthorized' ? undefined : error?.message;
-            navigate('/auth/login', { state: { error: errorMessage } });
-        }
-    }, [isError, error, navigate]);
-
-    if (isLoading) return <LoadingSpinner />;
-
-    if (data) return (
+    return (
         <>
             <header className="bg-background-light dark:bg-background-dark border-b-border-dark">
                 <div className="max-w-screen-xl mx-auto flex flex-col lg:flex-row justify-between items-center">
@@ -39,14 +23,14 @@ const AppLayout = () => {
                         <Logo darkMode={enabledDarkMode ? true : false} />
                     </div>
 
-                    <NavMenu checked={enabledDarkMode} onChange={setEnabledDarkMode} name={data.name} />
+                    <NavMenu checked={enabledDarkMode} onChange={setEnabledDarkMode} />
                 </div>
             </header>
 
             <hr />
 
             <section className="max-w-screen-xl mx-auto mt-10 p-5 dark:bg-background-dark">
-                <Outlet />
+                {children}
             </section>
 
             <footer className="py-5">

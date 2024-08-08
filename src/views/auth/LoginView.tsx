@@ -1,11 +1,11 @@
-import { Link, useLocation, useNavigate } from "react-router-dom"
-import { useForm } from "react-hook-form"
-import { useMutation } from "@tanstack/react-query"
-import { ErrorMessage } from "@/components/ErrorMessage"
-import { login } from "@/api/AuthAPI"
-import { UserLoginForm } from "@/types/index"
-import { toast } from "react-toastify"
-import { useEffect } from "react"
+import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import { useMutation } from "@tanstack/react-query";
+import { ErrorMessage } from "@/components/ErrorMessage";
+import { loginAPI } from "@/api/AuthAPI";
+import { UserLoginForm } from "@/types/index";
+import { useAuth } from "@/hooks/useAuth";
 
 const LoginView = () => {
 
@@ -15,23 +15,15 @@ const LoginView = () => {
     }
     const { register, handleSubmit, formState: { errors } } = useForm({ defaultValues: initialValues });
 
-    const navigate = useNavigate();
-    const location = useLocation();
-
-    useEffect(() => {
-        if (location.state) {
-            toast.error(location.state.error);
-            navigate(location.pathname, { replace: true });
-        }
-    }, [location, navigate]);
+    const { login } = useAuth();
 
     const { mutate } = useMutation({
-        mutationFn: login,
+        mutationFn: loginAPI,
         onError: (error) => {
             toast.error(error.message);
         },
         onSuccess: () => {
-            navigate('/');
+            login();
         }
     });
 

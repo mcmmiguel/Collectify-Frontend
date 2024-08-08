@@ -14,7 +14,7 @@ export async function createAccount(formData: UserRegisterForm) {
     }
 }
 
-export async function login(formData: UserLoginForm) {
+export async function loginAPI(formData: UserLoginForm) {
     try {
         const url = '/auth/login';
         const { data } = await api.post<string>(url, formData);

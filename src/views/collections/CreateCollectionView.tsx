@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
-import CollectionForm from "@/components/collections/CollectionForm";
-import { CollectionFormData } from "@/types/index";
-import { useMutation } from "@tanstack/react-query";
-import { createCollection, uploadImageToCloudinary } from "@/api/CollectionAPI";
 import { toast } from "react-toastify";
+import { useMutation } from "@tanstack/react-query";
+import CollectionForm from "@/components/collections/CollectionForm";
+import { createCollection, uploadImageToCloudinary } from "@/api/CollectionAPI";
+import { CollectionFormData } from "@/types/index";
 
 const CreateCollectionView = () => {
 

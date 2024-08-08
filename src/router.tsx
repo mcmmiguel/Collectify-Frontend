@@ -4,6 +4,7 @@ import MainView from "./views/MainView";
 import AuthLayout from "./layouts/AuthLayout";
 import LoginView from "./views/auth/LoginView";
 import RegisterView from "./views/auth/RegisterView";
+import CreateCollectionView from "./views/collections/CreateCollectionView";
 
 export default function Router() {
 
@@ -12,6 +13,7 @@ export default function Router() {
             <Routes>
                 <Route element={<AppLayout />}>
                     <Route path="/" element={<MainView />} index />
+                    <Route path="/collections/create" element={<CreateCollectionView />} />
                 </Route>
 
 

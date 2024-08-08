@@ -4,6 +4,7 @@ import NavMenu from "@/components/NavMenu";
 import { useEffect, useState } from "react";
 import { useAuth } from '../hooks/useAuth';
 import LoadingSpinner from "@/components/LoadingSpinner";
+import { ToastContainer } from "react-toastify";
 
 const AppLayout = () => {
 
@@ -49,9 +50,13 @@ const AppLayout = () => {
             </section>
 
             <footer className="py-5">
-                <p className="text-center dark:text-text-dark">All rights reserved. {new Date().getFullYear()}</p>
+                <p className="text-center text-text-light dark:text-text-dark">All rights reserved. {new Date().getFullYear()}</p>
             </footer>
 
+            <ToastContainer
+                pauseOnHover={false}
+                pauseOnFocusLoss={false}
+            />
         </>
     )
 }

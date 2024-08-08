@@ -26,3 +26,26 @@ export const userSchema = authSchema.pick({
 });
 
 export type User = z.infer<typeof userSchema>;
+
+
+
+// COLLECTIONS
+export const collectionSchema = z.object({
+    _id: z.string(),
+    collectionName: z.string(),
+    description: z.string(),
+    image: z.optional(z.string()),
+    owner: z.string(),
+});
+
+export type Collection = z.infer<typeof collectionSchema>;
+export type CollectionFormData = Pick<Collection, 'collectionName' | 'description' | 'image'>;
+
+
+
+
+
+// CLOUDINARY IMAGES
+export type ImageFormData = {
+    image: File[];
+};

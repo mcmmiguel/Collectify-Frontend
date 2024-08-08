@@ -1,10 +1,11 @@
-type LogoProps = {
-    darkMode: boolean;
-}
+import { useTheme } from "@/hooks/useTheme";
 
-const Logo = ({ darkMode }: LogoProps) => {
+const Logo = () => {
+
+    const { enabledDarkMode } = useTheme();
+
     return (
-        <img src={`/logo-${darkMode ? 'white' : 'black'}.png`} alt="Collectify Logo" />
+        <img src={`/logo-${enabledDarkMode ? 'white' : 'black'}.png`} alt="Collectify Logo" />
     )
 }
 export default Logo

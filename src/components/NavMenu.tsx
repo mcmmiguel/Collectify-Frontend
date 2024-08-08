@@ -3,15 +3,12 @@ import { Popover, Transition, Switch, PopoverButton, PopoverPanel } from '@headl
 import { Bars3Icon } from '@heroicons/react/20/solid'
 import { Link } from 'react-router-dom'
 import { useAuth } from '@/hooks/useAuth'
+import { useTheme } from '@/hooks/useTheme'
 
-type NavMenuProps = {
-    checked: boolean;
-    onChange: ((checked: boolean) => void);
-}
-
-const NavMenu = ({ checked, onChange }: NavMenuProps) => {
+const NavMenu = () => {
 
     const { user, logout } = useAuth();
+    const { enabledDarkMode, setEnabledDarkMode } = useTheme();
 
     return (
         <Popover className="relative">
@@ -29,7 +26,7 @@ const NavMenu = ({ checked, onChange }: NavMenuProps) => {
                 leaveTo="opacity-0 translate-y-1"
             >
                 <PopoverPanel className="absolute left-1/2 z-10 mt-5 flex w-screen lg:max-w-min -translate-x-1/2 lg:-translate-x-48">
-                    <div className="w-full lg:w-56 shrink rounded-xl bg-background-light dark:bg-gray-700 p-4 text-sm font-semibold leading-6 text-text-light dark:text-text-dark shadow-lg ring-1 ring-gray-900/5">
+                    <div className="w-full lg:w-56 shrink rounded-xl bg-background-light dark:bg-border-dark p-4 text-sm font-semibold leading-6 text-text-light dark:text-text-dark shadow-lg ring-1 ring-gray-900/5">
                         <p className='text-center'>Hello: {user?.name}</p>
                         <Link
                             to='/profile'
@@ -52,8 +49,8 @@ const NavMenu = ({ checked, onChange }: NavMenuProps) => {
                         <div className='p-2 flex justify-between items-center '>
                             <p>Dark mode</p>
                             <Switch
-                                checked={checked}
-                                onChange={onChange}
+                                checked={enabledDarkMode}
+                                onChange={setEnabledDarkMode}
                                 className="group inline-flex h-6 w-11 items-center rounded-full bg-gray-200 transition data-[checked]:bg-blue-600"
                             >
                                 <span className="size-4 translate-x-1 rounded-full bg-white transition group-data-[checked]:translate-x-6" />

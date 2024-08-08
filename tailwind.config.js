@@ -14,6 +14,7 @@ export default {
         'secondary-light': '#10b981', // green-500
         'secondary-dark': '#047857', // green-700
         'background-light': '#ffffff', // white
+        'gray-light': '#f3f4f6',
         'text-light': '#1f2937', // gray-800
         'border-light': '#d1d5db', // gray-300
         'success-light': '#10b981', // green-500

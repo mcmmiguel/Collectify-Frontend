@@ -7,27 +7,30 @@ import CreateCollectionView from "./views/collections/CreateCollectionView";
 import ProtectedLayout from "./layouts/ProtectedLayout";
 import { AuthProvider } from "@/context/AuthContext";
 import DynamicLayout from "./layouts/DynamicLayout";
+import { ThemeProvider } from "./context/ThemeContext";
 
 export default function Router() {
 
     return (
         <BrowserRouter>
             <AuthProvider>
-                <Routes>
-                    <Route element={<AuthLayout />}>
-                        <Route path="/auth/login" element={<LoginView />} />
-                        <Route path="/auth/register" element={<RegisterView />} />
-                    </Route>
+                <ThemeProvider>
+                    <Routes>
+                        <Route element={<AuthLayout />}>
+                            <Route path="/auth/login" element={<LoginView />} />
+                            <Route path="/auth/register" element={<RegisterView />} />
+                        </Route>
 
-                    {/* Shared routes between auth and not-auth users */}
-                    <Route element={<DynamicLayout />}>
-                        <Route path="/" element={<MainView />} index />
-                    </Route>
+                        {/* Shared routes between auth and not-auth users */}
+                        <Route element={<DynamicLayout />}>
+                            <Route path="/" element={<MainView />} index />
+                        </Route>
 
-                    <Route element={<ProtectedLayout />}>
-                        <Route path="/collections/create" element={<CreateCollectionView />} />
-                    </Route>
-                </Routes>
+                        <Route element={<ProtectedLayout />}>
+                            <Route path="/collections/create" element={<CreateCollectionView />} />
+                        </Route>
+                    </Routes>
+                </ThemeProvider>
             </AuthProvider>
         </BrowserRouter>
     )

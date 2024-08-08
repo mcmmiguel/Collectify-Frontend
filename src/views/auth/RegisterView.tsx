@@ -34,9 +34,9 @@ const RegisterView = () => {
     return (
         <>
             <h1 className="text-2xl text-center font-black text-text-light dark:text-text-dark">Sign Up</h1>
-            <p className="text-xl text-center font-light text-text-light mt-2">
+            <p className="text-xl text-center font-light text-text-light dark:text-text-dark mt-2">
                 Complete the form to{''}
-                <span className=" text-primary-light font-bold"> create your account.</span>
+                <span className=" text-primary-light dark:text-primary-light-dark font-bold"> create your account.</span>
             </p>
 
             <form
@@ -48,7 +48,7 @@ const RegisterView = () => {
 
                 <div className="flex flex-col gap-2">
                     <label
-                        className="font-normal text-xl"
+                        className="font-normal text-xl text-text-light dark:text-text-dark"
                     >Name</label>
                     <input
                         type="name"
@@ -65,7 +65,7 @@ const RegisterView = () => {
 
                 <div className="flex flex-col gap-5">
                     <label
-                        className="font-normal text-xl"
+                        className="font-normal text-xl text-text-light dark:text-text-dark"
                         htmlFor="email"
                     >Email</label>
                     <input
@@ -88,7 +88,7 @@ const RegisterView = () => {
 
                 <div className="flex flex-col gap-5">
                     <label
-                        className="font-normal text-xl"
+                        className="font-normal text-xl text-text-light dark:text-text-dark"
                     >Password</label>
 
                     <input
@@ -110,7 +110,7 @@ const RegisterView = () => {
 
                 <div className="flex flex-col gap-5">
                     <label
-                        className="font-normal text-xl"
+                        className="font-normal text-xl text-text-light dark:text-text-dark"
                     >Confirm password</label>
 
                     <input

@@ -38,7 +38,7 @@ const LoginView = () => {
             >
                 <div className="flex flex-col gap-2">
                     <label
-                        className="font-normal text-xl"
+                        className="font-normal text-xl text-text-light dark:text-text-dark"
                     >Email</label>
 
                     <input
@@ -61,7 +61,7 @@ const LoginView = () => {
 
                 <div className="flex flex-col gap-5">
                     <label
-                        className="font-normal text-xl"
+                        className="font-normal text-xl text-text-light dark:text-text-dark"
                     >Password</label>
 
                     <input

@@ -15,7 +15,9 @@ const PublicLayout = ({ children }: { children: ReactNode }) => {
             <header className="py-5 bg-background-light dark:bg-background-dark border-b-border-dark">
                 <div className="max-w-screen-2xl mx-auto flex flex-col lg:flex-row justify-between items-center">
                     <div className="w-40 flex justify-center lg:block">
-                        <Logo />
+                        <Link to={'/'}>
+                            <Logo />
+                        </Link>
                     </div>
 
                     <div className="flex justify-center">

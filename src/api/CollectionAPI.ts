@@ -1,5 +1,5 @@
 import api from "@/lib/axios";
-import { allCollectionsSchema, CollectionFormData } from "../types";
+import { allCollectionsSchema, Collection, CollectionFormData, fullCollectionSchema } from "../types";
 import axios, { isAxiosError } from "axios";
 
 export async function createCollection(formData: CollectionFormData) {
@@ -19,7 +19,27 @@ export async function getAllCollections() {
         const url = '/public/collections';
         const { data } = await api(url);
         const response = allCollectionsSchema.safeParse(data);
-        return response;
+        console.log(response);
+        if (response.success) {
+            return response.data;
+        }
+    } catch (error) {
+        if (isAxiosError(error) && error.response) {
+            throw new Error(error.response.data.error);
+        }
+    }
+}
+
+export async function getFullCollection(id: Collection['_id']) {
+    try {
+        const url = `/public/collections/${id}`;
+        const { data } = await api(url);
+        console.log(data);
+        const response = fullCollectionSchema.safeParse(data);
+        console.log(response);
+        if (response.success) {
+            return response.data;
+        }
     } catch (error) {
         if (isAxiosError(error) && error.response) {
             throw new Error(error.response.data.error);

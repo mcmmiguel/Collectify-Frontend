@@ -27,6 +27,41 @@ export const userSchema = authSchema.pick({
 
 export type User = z.infer<typeof userSchema>;
 
+// COMMENTS
+export const commentSchema = z.object({
+    item: z.string(),
+    author: z.string(),
+    comment: z.string(),
+});
+
+
+
+// LIKES
+export const likeSchema = z.object({
+    item: z.string(),
+    author: z.string(),
+});
+
+
+// ITEMS
+export const itemSchema = z.object({
+    _id: z.string(),
+    itemName: z.string(),
+    description: z.optional(z.string()),
+    image: z.optional(z.string()),
+    itemCollection: z.string(),
+    comments: z.array(
+        commentSchema,
+    ),
+    likes: z.array(
+        likeSchema,
+    ),
+    createdAt: z.string(),
+    updatedAt: z.string(),
+});
+
+export type Item = z.infer<typeof itemSchema>;
+export type ItemFormData = Pick<Item, 'itemName' | 'description' | 'image'>;
 
 
 // COLLECTIONS
@@ -41,6 +76,18 @@ export const collectionSchema = z.object({
     owner: z.string(),
 });
 
+export const fullCollectionSchema = collectionSchema.pick({
+    _id: true,
+    collectionName: true,
+    description: true,
+    image: true,
+    owner: true,
+}).extend({
+    items: z.optional(z.array(
+        itemSchema,
+    )),
+})
+
 export const allCollectionsSchema = z.array(
     collectionSchema.pick({
         _id: true,
@@ -53,6 +100,10 @@ export const allCollectionsSchema = z.array(
 );
 export type Collection = z.infer<typeof collectionSchema>;
 export type CollectionFormData = Pick<Collection, 'collectionName' | 'description' | 'image'>;
+
+
+
+
 
 
 

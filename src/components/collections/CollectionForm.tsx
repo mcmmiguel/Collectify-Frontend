@@ -49,7 +49,7 @@ const CollectionForm = ({ errors, register }: CollectionFormProps) => {
             </div>
 
             <div className="mb-5 space-y-3">
-                <label htmlFor="description" className="text-sm uppercase font-bold block">
+                <label htmlFor="image" className="text-sm uppercase font-bold block">
                     Upload an image
                 </label>
                 <input

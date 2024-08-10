@@ -25,9 +25,10 @@ const AllCollectionsView = () => {
 
             {isLoading
                 ? <LoadingSpinner />
+                // TODO COnsiderar agregar un texto para cuando no haya colecciones
                 : (
                     <div className="flex flex-col items-center md:grid md:grid-cols-2 lg:grid-cols-4 justify-items-center gap-y-10">
-                        {data?.data?.map(collection => <CollectionCard key={collection._id} collection={collection} />)}
+                        {data?.map(collection => <CollectionCard key={collection._id} collection={collection} />)}
                     </div>
                 )
             }

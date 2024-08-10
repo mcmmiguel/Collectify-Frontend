@@ -9,9 +9,10 @@ import { AuthProvider } from "@/context/AuthContext";
 import DynamicLayout from "./layouts/DynamicLayout";
 import { ThemeProvider } from "./context/ThemeContext";
 import AllCollectionsView from "./views/collections/AllCollectionsView";
+import CollectionDetailsView from "./views/collections/CollectionDetailsView";
+import { NotFound } from "./views/404/NotFound";
 
 export default function Router() {
-
     return (
         <BrowserRouter>
             <AuthProvider>
@@ -26,10 +27,15 @@ export default function Router() {
                         <Route element={<DynamicLayout />}>
                             <Route path="/" element={<MainView />} index />
                             <Route path="/collections" element={<AllCollectionsView />} />
+                            <Route path="/collections/:collectionId" element={<CollectionDetailsView />} />
                         </Route>
 
                         <Route element={<ProtectedLayout />}>
                             <Route path="/collections/create" element={<CreateCollectionView />} />
+                        </Route>
+
+                        <Route element={<DynamicLayout />}>
+                            <Route path="*" element={<NotFound />} />
                         </Route>
                     </Routes>
                 </ThemeProvider>

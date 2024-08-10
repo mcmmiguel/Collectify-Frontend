@@ -1,4 +1,3 @@
-import CollectionCard from "@/components/collections/CollectionCard";
 import Fab from "@/components/collections/FAB"
 import { useAuth } from "@/hooks/useAuth"
 
@@ -8,7 +7,6 @@ const MainView = () => {
 
     return (
         <>
-            <CollectionCard />
             {user && <Fab />}
         </>
     )

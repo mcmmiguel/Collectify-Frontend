@@ -60,7 +60,7 @@ const CreateCollectionView = () => {
                     <input
                         type="submit"
                         value="Create"
-                        disabled={createCollectionMutation.isPending}
+                        disabled={uploadImageMutation.isPending || createCollectionMutation.isPending}
                         className={`bg-secondary-dark hover:bg-secondary-dark-dark w-full block p-2 text-text-dark font-bold rounded-lg cursor-pointer transition-colors uppercase ${createCollectionMutation.isPending ? "opacity-50 cursor-not-allowed" : ""}`}
                     />
                 </form>

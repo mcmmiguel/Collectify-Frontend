@@ -33,11 +33,24 @@ export type User = z.infer<typeof userSchema>;
 export const collectionSchema = z.object({
     _id: z.string(),
     collectionName: z.string(),
-    description: z.string(),
+    description: z.optional(z.string()),
+    items: z.optional(z.array(
+        z.string(),
+    )),
     image: z.optional(z.string()),
     owner: z.string(),
 });
 
+export const allCollectionsSchema = z.array(
+    collectionSchema.pick({
+        _id: true,
+        collectionName: true,
+        description: true,
+        image: true,
+        owner: true,
+        items: true,
+    })
+);
 export type Collection = z.infer<typeof collectionSchema>;
 export type CollectionFormData = Pick<Collection, 'collectionName' | 'description' | 'image'>;
 

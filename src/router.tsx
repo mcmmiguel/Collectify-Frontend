@@ -8,6 +8,7 @@ import ProtectedLayout from "./layouts/ProtectedLayout";
 import { AuthProvider } from "@/context/AuthContext";
 import DynamicLayout from "./layouts/DynamicLayout";
 import { ThemeProvider } from "./context/ThemeContext";
+import AllCollectionsView from "./views/collections/AllCollectionsView";
 
 export default function Router() {
 
@@ -24,6 +25,7 @@ export default function Router() {
                         {/* Shared routes between auth and not-auth users */}
                         <Route element={<DynamicLayout />}>
                             <Route path="/" element={<MainView />} index />
+                            <Route path="/collections" element={<AllCollectionsView />} />
                         </Route>
 
                         <Route element={<ProtectedLayout />}>

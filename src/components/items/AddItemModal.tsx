@@ -1,8 +1,12 @@
 import { Fragment } from 'react';
 import { Dialog, Transition, TransitionChild, DialogPanel, DialogTitle } from '@headlessui/react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { useMutation } from '@tanstack/react-query';
 import ItemForm from './ItemForm';
+import { uploadImageToCloudinary } from '@/api/CollectionAPI';
+import { createItem } from '@/api/ItemAPI';
 import { ItemFormData } from '@/types/index';
 
 const AddItemModal = () => {
@@ -14,15 +18,55 @@ const AddItemModal = () => {
     const modalItem = queryParams.get('newItem');
     const show = modalItem ? true : false;
 
+    const params = useParams();
+    const collectionId = params.collectionId!;
+
     const initalValues: ItemFormData = {
         itemName: '',
         description: '',
         image: '',
     }
 
-    const { register, formState: { errors }, handleSubmit } = useForm({ defaultValues: initalValues });
+    const { register, formState: { errors }, handleSubmit, reset } = useForm({ defaultValues: initalValues });
 
-    const handleCreateItem = (formData: ItemFormData) => console.log(formData);
+    const createItemMutation = useMutation({
+        mutationFn: createItem,
+        onError: (error) => {
+            toast.error(error.message);
+        },
+        onSuccess: (data) => {
+            toast.success(data);
+            reset();
+            navigate(location.pathname, { replace: true });
+        }
+    });
+
+    const uploadImageMutation = useMutation({
+        mutationFn: uploadImageToCloudinary,
+        onError: (error) => {
+            toast.error('Error uploading image: ' + error.message);
+        },
+    });
+
+    const handleCreateItem = async (formData: ItemFormData) => {
+        let imageUrl = '';
+
+        if (formData.image && formData.image[0]) {
+            imageUrl = await uploadImageMutation.mutateAsync(formData.image[0]);
+        }
+
+        const itemData = {
+            formData: {
+                ...formData,
+                image: imageUrl,
+            },
+            collectionId,
+        };
+
+        console.log(itemData);
+
+        createItemMutation.mutate(itemData);
+    };
 
     return (
         <>
@@ -73,9 +117,8 @@ const AddItemModal = () => {
 
                                         <input
                                             type='submit'
-                                            className={` bg-secondary-dark hover:bg-secondary-dark-dark w-full block p-3 text-text-dark font-bold rounded-lg cursor-pointer transition-colors uppercase`}
+                                            className={` bg-secondary-dark hover:bg-secondary-dark-dark w-full block p-3 text-text-dark font-bold rounded-lg cursor-pointer transition-colors uppercase ${createItemMutation.isPending ? "opacity-50 cursor-not-allowed" : ""}`}
                                             value={"Save Item"}
-                                        // ${createCollectionMutation.isPending ? "opacity-50 cursor-not-allowed" : ""}
                                         />
                                     </form>
 

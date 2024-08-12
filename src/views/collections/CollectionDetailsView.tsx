@@ -42,7 +42,7 @@ const CollectionDetailsView = () => {
                 </p>
             </div>
 
-            {(user && user._id === data.owner) &&
+            {(user && user._id === data.owner) || (user && user.isAdmin) &&
                 <nav className="relative my-5 flex gap-3">
                     <button
                         type="button"

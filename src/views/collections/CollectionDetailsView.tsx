@@ -5,6 +5,8 @@ import LoadingSpinner from "@/components/LoadingSpinner";
 import { getFullCollection } from "@/api/CollectionAPI";
 import { useAuth } from "@/hooks/useAuth";
 import AddItemModal from "@/components/items/AddItemModal";
+import ItemCard from "@/components/items/ItemCard";
+import hasOwnership from "@/utils/policies";
 
 const CollectionDetailsView = () => {
 
@@ -42,16 +44,25 @@ const CollectionDetailsView = () => {
                 </p>
             </div>
 
-            {(user && user._id === data.owner) || (user && user.isAdmin) &&
-                <nav className="relative my-5 flex gap-3">
-                    <button
-                        type="button"
-                        className="fixed bottom-10 right-10 bg-secondary-dark hover:bg-secondary-light-dark text-text-dark text-xl font-bold rounded-full w-14 h-14 flex items-center justify-center shadow-lg transition-colors"
-                        onClick={() => navigate('?newItem=true')}
-                    >
-                        <PlusIcon width={25} height={25} />
-                    </button>
-                </nav>
+            {hasOwnership(data.owner, user) &&
+                <>
+                    <nav className="relative my-5 flex gap-3">
+                        <button
+                            type="button"
+                            className="fixed bottom-10 right-10 bg-secondary-dark hover:bg-secondary-light-dark text-text-dark text-xl font-bold rounded-full w-14 h-14 flex items-center justify-center shadow-lg transition-colors"
+                            onClick={() => navigate('?newItem=true')}
+                        >
+                            <PlusIcon width={25} height={25} />
+                        </button>
+                    </nav>
+
+                </>
+            }
+
+            {data.items &&
+                <ul role="list" className="divide-y-2 divide-border-light dark:divide-border-dark border border-border-light dark:border-border-dark mt-10 bg-background-light dark:bg-background-dark shadow-lg rounded-lg">
+                    {data.items.map(item => <ItemCard key={item._id} item={item} collection={data} />)}
+                </ul>
             }
 
             <AddItemModal />

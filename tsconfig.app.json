@@ -37,6 +37,9 @@
       "@/context/*": [
         "context/*"
       ],
+      "@/utils/*": [
+        "utils/*"
+      ],
     },
     /* Bundler mode */
     "moduleResolution": "bundler",

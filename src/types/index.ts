@@ -99,6 +99,7 @@ export const allCollectionsSchema = z.array(
     })
 );
 export type Collection = z.infer<typeof collectionSchema>;
+export type FullCollection = z.infer<typeof fullCollectionSchema>;
 export type CollectionFormData = Pick<Collection, 'collectionName' | 'description' | 'image'>;
 
 

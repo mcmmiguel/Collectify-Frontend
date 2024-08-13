@@ -7,6 +7,7 @@ import { useAuth } from "@/hooks/useAuth";
 import AddItemModal from "@/components/items/AddItemModal";
 import ItemCard from "@/components/items/ItemCard";
 import hasOwnership from "@/utils/policies";
+import EditItemData from "@/components/items/EditItemData";
 
 const CollectionDetailsView = () => {
 
@@ -66,6 +67,7 @@ const CollectionDetailsView = () => {
             }
 
             <AddItemModal />
+            <EditItemData />
         </>
     )
 }

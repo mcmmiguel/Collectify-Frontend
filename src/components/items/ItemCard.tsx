@@ -21,8 +21,8 @@ const ItemCard = ({ item, collection }: ItemCardProps) => {
     return (
         <li className="flex justify-between gap-x-6 px-5 py-8 bg-background-light dark:bg-background-dark rounded-lg">
             <div className="flex min-w-0 gap-x-4">
-                <div className='w-32 h-32 flex-shrink-0 overflow-hidden self-center'>
-                    <img className='w-full h-full object-contain' src={item.image ? item.image : imageDefault} alt={item.itemName} />
+                <div className='w-32 h-32 flex-shrink-0 self-center'>
+                    <img className='w-full h-full object-contain rounded-lg' src={item.image ? item.image : imageDefault} alt={item.itemName} />
                 </div>
                 <div className="min-w-0 flex-auto space-y-2">
                     <div className='mb-2'>
@@ -52,25 +52,30 @@ const ItemCard = ({ item, collection }: ItemCardProps) => {
                             className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-background-light dark:bg-border-dark py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none"
                         >
                             <MenuItem>
-                                <Link to={`/projects/${item._id}`}
-                                    className='block px-3 py-1 text-sm leading-6 text-text-light dark:text-text-dark'>
+                                <button
+                                    type='button'
+                                    className='block px-3 py-1 text-sm leading-6 text-text-light dark:text-text-dark'
+                                >
                                     Details
-                                </Link>
+                                </button>
                             </MenuItem>
 
                             {hasOwnership(collection.owner, user) && (
                                 <>
                                     <MenuItem>
-                                        <Link to={`/projects/${item._id}/edit`}
-                                            className='block px-3 py-1 text-sm leading-6 text-text-light dark:text-text-dark'>
+                                        <button
+                                            type='button'
+                                            className='block px-3 py-1 text-sm leading-6 text-text-light dark:text-text-dark'
+                                            onClick={() => navigate(location.pathname + `?editItem=${item._id}`)}
+                                        >
                                             Edit
-                                        </Link>
+                                        </button>
                                     </MenuItem>
                                     <MenuItem>
                                         <button
                                             type='button'
                                             className='block px-3 py-1 text-sm leading-6 text-error-light dark:text-error-dark'
-                                            onClick={() => navigate(location.pathname + `?deleteProject=${item._id}`)}
+                                            onClick={() => navigate(location.pathname + `?deleteItem=${item._id}`)}
                                         >
                                             Delete
                                         </button>

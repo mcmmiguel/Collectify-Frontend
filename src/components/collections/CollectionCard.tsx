@@ -1,9 +1,9 @@
-import { Collection } from '@/types/index';
+import { CollectionWithOwner } from '@/types/index';
 import { ArrowUpRightIcon } from '@heroicons/react/24/outline';
 import { Link } from 'react-router-dom';
 
 type CollectionCardProps = {
-    collection: Collection;
+    collection: CollectionWithOwner;
 }
 
 const CollectionCard = ({ collection }: CollectionCardProps) => {

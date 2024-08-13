@@ -3,7 +3,7 @@ import { Dialog, Transition, TransitionChild, DialogPanel, DialogTitle } from '@
 import { toast } from 'react-toastify';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import ItemForm from './ItemForm';
 import { uploadImageToCloudinary } from '@/api/CollectionAPI';
 import { createItem } from '@/api/ItemAPI';
@@ -29,6 +29,8 @@ const AddItemModal = () => {
 
     const { register, formState: { errors }, handleSubmit, reset } = useForm({ defaultValues: initalValues });
 
+    const queryClient = useQueryClient();
+
     const createItemMutation = useMutation({
         mutationFn: createItem,
         onError: (error) => {
@@ -36,6 +38,7 @@ const AddItemModal = () => {
         },
         onSuccess: (data) => {
             toast.success(data);
+            queryClient.invalidateQueries({ queryKey: ['collection', collectionId] });
             reset();
             navigate(location.pathname, { replace: true });
         }
@@ -95,7 +98,7 @@ const AddItemModal = () => {
                                 leaveFrom="opacity-100 scale-100"
                                 leaveTo="opacity-0 scale-95"
                             >
-                                <DialogPanel className="w-full max-w-4xl transform overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all p-16 dark:bg-border-dark">
+                                <DialogPanel className="w-full max-w-4xl transform overflow-hidden rounded-2xl bg-background-light text-left align-middle shadow-xl transition-all p-16 dark:bg-border-dark">
                                     <DialogTitle
                                         as="h3"
                                         className="font-black text-4xl my-5 text-text-light dark:text-text-dark"

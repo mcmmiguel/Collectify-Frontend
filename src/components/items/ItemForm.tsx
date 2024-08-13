@@ -11,7 +11,7 @@ const ItemForm = ({ errors, register }: TaskFormProps) => {
     return (
         <>
             <div className="flex flex-col gap-2">
-                <label htmlFor="collectionName" className="font-normal text-xl">
+                <label htmlFor="collectionName" className="font-normal text-xl text-text-light dark:text-text-dark">
                     Item Name
                 </label>
                 <input
@@ -29,7 +29,7 @@ const ItemForm = ({ errors, register }: TaskFormProps) => {
             </div>
 
             <div className="flex flex-col gap-2">
-                <label htmlFor="description" className="font-normal text-xl">
+                <label htmlFor="description" className="font-normal text-xl text-text-light dark:text-text-dark">
                     Description
                 </label>
                 <input
@@ -42,7 +42,7 @@ const ItemForm = ({ errors, register }: TaskFormProps) => {
             </div>
 
             <div className="flex flex-col gap-2">
-                <label htmlFor="image" className="font-normal text-xl block">
+                <label htmlFor="image" className="font-normal text-xl block text-text-light dark:text-text-dark">
                     Upload an image
                 </label>
                 <input

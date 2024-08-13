@@ -1,11 +1,14 @@
 import { Fragment } from 'react';
 import { Menu, MenuButton, MenuItem, MenuItems, Transition } from "@headlessui/react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { EllipsisVerticalIcon } from '@heroicons/react/20/solid';
-import { FullCollection, Item } from '@/types/index';
 import imageDefault from '/image-default.jpg';
 import { useAuth } from '@/hooks/useAuth';
 import hasOwnership from '@/utils/policies';
+import { FullCollection, Item } from '@/types/index';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { deleteItem } from '@/api/ItemAPI';
+import { toast } from 'react-toastify';
 
 type ItemCardProps = {
     item: Item;
@@ -16,7 +19,22 @@ const ItemCard = ({ item, collection }: ItemCardProps) => {
 
     const navigate = useNavigate();
 
+    const params = useParams();
+    const collectionId = params.collectionId!;
+
     const { user } = useAuth();
+
+    const queryClient = useQueryClient();
+
+    const { mutate } = useMutation({
+        mutationFn: deleteItem,
+        onError: (error) => toast.error(error.message),
+        onSuccess: (data) => {
+            queryClient.invalidateQueries({ queryKey: ['collection', collectionId] })
+            toast.success(data);
+        }
+    })
+
 
     return (
         <li className="flex justify-between gap-x-6 px-5 py-8 bg-background-light dark:bg-background-dark rounded-lg">
@@ -75,7 +93,7 @@ const ItemCard = ({ item, collection }: ItemCardProps) => {
                                         <button
                                             type='button'
                                             className='block px-3 py-1 text-sm leading-6 text-error-light dark:text-error-dark'
-                                            onClick={() => navigate(location.pathname + `?deleteItem=${item._id}`)}
+                                            onClick={() => mutate({ collectionId, itemId: item._id })}
                                         >
                                             Delete
                                         </button>

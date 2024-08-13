@@ -31,10 +31,23 @@ export async function getItemById({ collectionId, itemId }: Pick<ItemAPI, 'colle
         }
     }
 }
+
 export async function updateItem({ collectionId, itemId, formData }: Pick<ItemAPI, 'collectionId' | 'itemId' | 'formData'>) {
     try {
         const url = `collections/${collectionId}/items/${itemId}`;
         const { data } = await api.put<string>(url, formData);
+        return data;
+    } catch (error) {
+        if (isAxiosError(error) && error.response) {
+            throw new Error(error.response.data.error);
+        }
+    }
+}
+
+export async function deleteItem({ collectionId, itemId }: Pick<ItemAPI, 'collectionId' | 'itemId'>) {
+    try {
+        const url = `collections/${collectionId}/items/${itemId}`;
+        const { data } = await api.delete<string>(url);
         return data;
     } catch (error) {
         if (isAxiosError(error) && error.response) {

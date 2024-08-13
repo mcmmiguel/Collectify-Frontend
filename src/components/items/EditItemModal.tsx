@@ -75,16 +75,16 @@ export default function EditItemModal({ data, itemId }: EditItemModalProps) {
                             leaveFrom="opacity-100 scale-100"
                             leaveTo="opacity-0 scale-95"
                         >
-                            <DialogPanel className="w-full max-w-4xl transform overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all p-16">
+                            <DialogPanel className="w-full max-w-4xl transform overflow-hidden rounded-2xl bg-background-light dark:bg-border-dark text-left align-middle shadow-xl transition-all p-16">
                                 <DialogTitle
                                     as="h3"
-                                    className="font-black text-4xl  my-5"
+                                    className="font-black text-4xl my-5 text-text-light dark:text-text-dark"
                                 >
-                                    Editar Tarea
+                                    Edit Item
                                 </DialogTitle>
 
-                                <p className="text-xl font-bold">Realiza cambios a una tarea en {''}
-                                    <span className="text-secondary-light dark:bg-secondary-light-dark">este formulario</span>
+                                <p className="text-xl font-bold text-text-light dark:text-text-dark">Make changes to an Item in {''}
+                                    <span className="text-secondary-light dark:secondary-light-dark">this form</span>
                                 </p>
 
                                 <form

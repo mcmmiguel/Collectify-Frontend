@@ -73,7 +73,10 @@ export const collectionSchema = z.object({
         z.string(),
     )),
     image: z.optional(z.string()),
-    owner: z.string(),
+    owner: userSchema.pick({
+        _id: true,
+        name: true,
+    }),
 });
 
 export const fullCollectionSchema = collectionSchema.pick({

@@ -8,6 +8,7 @@ import AddItemModal from "@/components/items/AddItemModal";
 import ItemCard from "@/components/items/ItemCard";
 import hasOwnership from "@/utils/policies";
 import EditItemData from "@/components/items/EditItemData";
+import CollectionToolBar from "@/components/collections/CollectionToolBar";
 
 const CollectionDetailsView = () => {
 
@@ -35,6 +36,9 @@ const CollectionDetailsView = () => {
                     backgroundImage: `linear-gradient(0deg, rgba(70, 70, 70, 0) 0%, rgba(140, 140, 140, 0.7) 100%), url(${data.image})`, backgroundPosition: '50% 50%'
                 }}
             >
+                {hasOwnership(data.owner, user) &&
+                    <CollectionToolBar collectionId={collectionId} />
+                }
                 <div className="absolute inset-0 bg-black opacity-50 rounded-lg pointer-events-none"></div>
 
                 <h1 className="relative text-5xl font-black text-text-dark text-center z-10">

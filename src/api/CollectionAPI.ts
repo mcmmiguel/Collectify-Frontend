@@ -34,12 +34,27 @@ export async function getFullCollection(id: Collection['_id']) {
     try {
         const url = `/public/collections/${id}`;
         const { data } = await api(url);
-        console.log(data);
         const response = fullCollectionSchema.safeParse(data);
-        console.log(response);
         if (response.success) {
             return response.data;
         }
+    } catch (error) {
+        if (isAxiosError(error) && error.response) {
+            throw new Error(error.response.data.error);
+        }
+    }
+}
+
+type CollectionApiType = {
+    formData: CollectionFormData;
+    collectionId: Collection['_id'];
+}
+
+export async function updateCollection({ formData, collectionId }: CollectionApiType) {
+    try {
+        const url = `/collections/${collectionId}`;
+        const { data } = await api.put<string>(url, formData);
+        return data;
     } catch (error) {
         if (isAxiosError(error) && error.response) {
             throw new Error(error.response.data.error);

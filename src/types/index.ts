@@ -65,7 +65,7 @@ export type ItemFormData = Pick<Item, 'itemName' | 'description' | 'image'>;
 
 
 // COLLECTIONS
-export const collectionSchema = z.object({
+export const collectionSchema = z.object({ //Collection without populated items and owner name
     _id: z.string(),
     collectionName: z.string(),
     description: z.optional(z.string()),
@@ -76,7 +76,7 @@ export const collectionSchema = z.object({
     image: z.optional(z.string()),
 });
 
-export const collectionWithOwner = collectionSchema.pick({
+export const collectionWithOwner = collectionSchema.pick({ //Collection with owner name but whithout populated items
     _id: true,
     collectionName: true,
     description: true,
@@ -89,7 +89,7 @@ export const collectionWithOwner = collectionSchema.pick({
     }),
 })
 
-export const fullCollectionSchema = collectionSchema.pick({ //CollectionDetails
+export const fullCollectionSchema = collectionSchema.pick({ //Collection with populated items
     _id: true,
     collectionName: true,
     description: true,

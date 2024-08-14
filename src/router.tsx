@@ -11,6 +11,7 @@ import { ThemeProvider } from "./context/ThemeContext";
 import AllCollectionsView from "./views/collections/AllCollectionsView";
 import CollectionDetailsView from "./views/collections/CollectionDetailsView";
 import { NotFound } from "./views/404/NotFound";
+import EditCollectionView from "./views/collections/EditCollectionView";
 
 export default function Router() {
     return (
@@ -32,6 +33,7 @@ export default function Router() {
 
                         <Route element={<ProtectedLayout />}>
                             <Route path="/collections/create" element={<CreateCollectionView />} />
+                            <Route path="/collections/:collectionId/edit" element={<EditCollectionView />} />
                         </Route>
 
                         <Route element={<DynamicLayout />}>

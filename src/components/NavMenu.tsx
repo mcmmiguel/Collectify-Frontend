@@ -11,7 +11,7 @@ const NavMenu = () => {
     const { enabledDarkMode, setEnabledDarkMode } = useTheme();
 
     return (
-        <Popover className="relative">
+        <Popover className="relative z-20">
             <PopoverButton className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 p-1 rounded-lg bg-primary-light">
                 <Bars3Icon className='w-8 h-8 text-white ' />
             </PopoverButton>

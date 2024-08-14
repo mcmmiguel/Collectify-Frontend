@@ -62,6 +62,18 @@ export async function updateCollection({ formData, collectionId }: CollectionApi
     }
 }
 
+export async function deleteCollection(collectionId: Collection['_id']) {
+    try {
+        const url = `/collections/${collectionId}`;
+        const { data } = await api.delete<string>(url);
+        return data;
+    } catch (error) {
+        if (isAxiosError(error) && error.response) {
+            throw new Error(error.response.data.error);
+        }
+    }
+}
+
 export async function uploadImageToCloudinary(file: string) {
     const formData = new FormData();
     formData.append('file', file);

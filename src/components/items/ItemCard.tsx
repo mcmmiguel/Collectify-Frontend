@@ -48,9 +48,12 @@ const ItemCard = ({ item, collection }: ItemCardProps) => {
                             <p className='font-bold text-xs uppercase bg-transparent text-primary-light dark:text-primary-light-dark border-2 border-primary-light dark:border-primary-light-dark rounded-lg inline-block py-1 px-5'>Manager</p>
                         }
                     </div>
-                    <Link to={`/projects/${item._id}`}
+                    <Link
+                        to={`/collections/${collectionId}/items/${item._id}`}
                         className="text-text-light dark:text-text-dark cursor-pointer hover:underline text-3xl font-bold"
-                    >{item.itemName}</Link>
+                    >
+                        {item.itemName}
+                    </Link>
                     <p className="text-sm text-text-light dark:text-text-dark">
                         {item.description}
                     </p>
@@ -70,12 +73,13 @@ const ItemCard = ({ item, collection }: ItemCardProps) => {
                             className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-background-light dark:bg-border-dark py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none"
                         >
                             <MenuItem>
-                                <button
+                                <Link
+                                    to={`/collections/${collectionId}/items/${item._id}`}
                                     type='button'
                                     className='block px-3 py-1 text-sm leading-6 text-text-light dark:text-text-dark'
                                 >
-                                    Details
-                                </button>
+                                    View
+                                </Link>
                             </MenuItem>
 
                             {hasOwnership(collection.owner, user) && (

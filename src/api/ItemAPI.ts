@@ -1,6 +1,6 @@
 import { isAxiosError } from "axios";
 import api from "@/lib/axios";
-import { Collection, Item, ItemFormData } from "../types";
+import { Collection, Item, ItemFormData, itemSchema } from "../types";
 
 type ItemAPI = {
     formData: ItemFormData;
@@ -24,7 +24,8 @@ export async function getItemById({ collectionId, itemId }: Pick<ItemAPI, 'colle
     try {
         const url = `public/collections/${collectionId}/items/${itemId}`;
         const { data } = await api(url);
-        return data;
+        const response = itemSchema.safeParse(data);
+        if (response.success) return response.data;
     } catch (error) {
         if (isAxiosError(error) && error.response) {
             throw new Error(error.response.data.error);

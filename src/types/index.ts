@@ -34,6 +34,9 @@ export const commentSchema = z.object({
     comment: z.string(),
 });
 
+export type Comment = z.infer<typeof commentSchema>;
+export type CommentFormData = Pick<Comment, 'comment'>;
+
 
 
 // LIKES

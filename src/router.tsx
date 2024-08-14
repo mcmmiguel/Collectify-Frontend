@@ -12,6 +12,7 @@ import AllCollectionsView from "./views/collections/AllCollectionsView";
 import CollectionDetailsView from "./views/collections/CollectionDetailsView";
 import { NotFound } from "./views/404/NotFound";
 import EditCollectionView from "./views/collections/EditCollectionView";
+import ItemDetailsView from "./views/items/ItemDetailsView";
 
 export default function Router() {
     return (
@@ -29,6 +30,7 @@ export default function Router() {
                             <Route path="/" element={<MainView />} index />
                             <Route path="/collections" element={<AllCollectionsView />} />
                             <Route path="/collections/:collectionId" element={<CollectionDetailsView />} />
+                            <Route path="/collections/:collectionId/items/:itemId" element={<ItemDetailsView />} />
                         </Route>
 
                         <Route element={<ProtectedLayout />}>

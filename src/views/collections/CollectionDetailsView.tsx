@@ -54,13 +54,12 @@ const CollectionDetailsView = () => {
                     <nav className="relative my-5 flex gap-3">
                         <button
                             type="button"
-                            className="fixed bottom-10 right-10 bg-secondary-dark hover:bg-secondary-light-dark text-text-dark text-xl font-bold rounded-full w-14 h-14 flex items-center justify-center shadow-lg transition-colors"
+                            className="fixed bottom-10 right-10 bg-secondary-dark hover:bg-secondary-light-dark text-text-dark text-xl font-bold rounded-full w-14 h-14 flex items-center justify-center shadow-lg transition-colors z-30"
                             onClick={() => navigate('?newItem=true')}
                         >
                             <PlusIcon width={25} height={25} />
                         </button>
                     </nav>
-
                 </>
             }
 

@@ -1,14 +1,17 @@
-import { Fragment } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { Menu, MenuButton, MenuItem, MenuItems, Transition } from "@headlessui/react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { EllipsisVerticalIcon } from '@heroicons/react/20/solid';
+import { ChatBubbleBottomCenterIcon } from '@heroicons/react/24/outline';
 import imageDefault from '/image-default.jpg';
 import { useAuth } from '@/hooks/useAuth';
 import hasOwnership from '@/utils/policies';
-import { FullCollection, Item } from '@/types/index';
+import { FullCollection, Item, Like } from '@/types/index';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { deleteItem } from '@/api/ItemAPI';
 import { toast } from 'react-toastify';
+import { HeartIcon } from '@heroicons/react/24/outline';
+import socket from '@/lib/socket';
 
 type ItemCardProps = {
     item: Item;
@@ -16,6 +19,9 @@ type ItemCardProps = {
 }
 
 const ItemCard = ({ item, collection }: ItemCardProps) => {
+
+    const [comments, setComments] = useState<Comment[]>([]);
+    const [likes, setLikes] = useState<Like[]>([]);
 
     const navigate = useNavigate();
 
@@ -33,11 +39,31 @@ const ItemCard = ({ item, collection }: ItemCardProps) => {
             queryClient.invalidateQueries({ queryKey: ['collection', collectionId] })
             toast.success(data);
         }
-    })
+    });
 
+    useEffect(() => {
+        socket.emit("joinItemRoom", item._id);
+
+        socket.on("loadLikes", (data: { itemId: string, likes: Like[] }) => {
+            if (data.itemId === item._id) {
+                setLikes(data.likes);
+            }
+        });
+
+        socket.on("loadComments", (data: { itemId: string, comments: Comment[] }) => {
+            if (data.itemId === item._id) {
+                setComments(data.comments);
+            }
+        });
+
+        return () => {
+            socket.off("loadComments");
+            socket.off("loadLikes");
+        };
+    }, [item._id]);
 
     return (
-        <li className="flex justify-between gap-x-6 px-5 py-8 bg-background-light dark:bg-background-dark rounded-lg">
+        <li className="flex relative justify-between gap-x-6 px-5 py-8 bg-background-light dark:bg-background-dark rounded-lg">
             <div className="flex min-w-0 gap-x-4">
                 <div className='w-32 h-32 flex-shrink-0 self-center'>
                     <img className='w-full h-full object-contain rounded-lg' src={item.image ? item.image : imageDefault} alt={item.itemName} />
@@ -108,6 +134,18 @@ const ItemCard = ({ item, collection }: ItemCardProps) => {
                         </MenuItems>
                     </Transition>
                 </Menu>
+            </div>
+
+            <div className='flex gap-5 absolute bottom-2 right-10'>
+                <div className='flex items-center gap-1'>
+                    <HeartIcon width={20} height={20} color='transparent' className='fill-background-dark dark:fill-background-light' />
+                    <p className='text-text-light dark:text-text-dark font-light text-lg'>{likes.length}</p>
+                </div>
+
+                <div className='flex items-center gap-1'>
+                    <ChatBubbleBottomCenterIcon width={20} height={20} color='transparent' className='fill-background-dark dark:fill-background-light' />
+                    <p className='text-text-light dark:text-text-dark font-light text-lg'>{comments.length}</p>
+                </div>
             </div>
         </li>
     )

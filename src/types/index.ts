@@ -32,18 +32,24 @@ export const commentSchema = z.object({
     item: z.string(),
     author: z.string(),
     comment: z.string(),
+    createdAt: z.string(),
+    updatedAt: z.string(),
 });
 
 export type Comment = z.infer<typeof commentSchema>;
 export type CommentFormData = Pick<Comment, 'comment'>;
 
 
-
 // LIKES
 export const likeSchema = z.object({
     item: z.string(),
-    author: z.string(),
+    author: z.object({
+        _id: z.string(),
+        name: z.string(),
+    }),
 });
+
+export type Like = z.infer<typeof likeSchema>;
 
 
 // ITEMS

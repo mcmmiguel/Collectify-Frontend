@@ -35,19 +35,19 @@ const NavMenu = () => {
                         <Link
                             to='/admin'
                             className='block p-2 dark:text-text-dark hover:text-hover-link-light hover:dark:text-hover-link-dark'
-                        >Admin panel</Link>
+                        >Admin Panel</Link>
                         <button
                             className='block p-2 dark:text-text-dark hover:text-hover-link-light hover:dark:text-hover-link-dark'
                             type='button'
                             onClick={logout}
                         >
-                            Log out
+                            Log Out
                         </button>
 
                         <hr />
 
                         <div className='p-2 flex justify-between items-center '>
-                            <p>Dark mode</p>
+                            <p>Dark Mode</p>
                             <Switch
                                 checked={enabledDarkMode}
                                 onChange={setEnabledDarkMode}

@@ -1,5 +1,5 @@
 import { createContext, ReactNode } from "react";
-import { User } from "../types";
+import { AuthUser } from "../types";
 import { getUser } from "@/api/AuthAPI";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
@@ -10,7 +10,7 @@ type AuthProviderProps = {
 }
 
 export type AuthContextProps = {
-    user?: User;
+    user?: AuthUser;
     error: Error | null;
     isError?: boolean;
     isLoading?: boolean;

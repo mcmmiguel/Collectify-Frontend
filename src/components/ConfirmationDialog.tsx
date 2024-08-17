@@ -31,7 +31,7 @@ const ConfirmationDialog = ({ title, message, isOpen, onClose, onConfirm }: Conf
                             }}
                             className="px-4 py-2 bg-error-light dark:bg-error-dark text-white rounded-lg"
                         >
-                            Delete
+                            Confirm
                         </button>
                     </div>
                 </DialogPanel>

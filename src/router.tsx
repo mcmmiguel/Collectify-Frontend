@@ -13,6 +13,8 @@ import CollectionDetailsView from "./views/collections/CollectionDetailsView";
 import { NotFound } from "./views/404/NotFound";
 import EditCollectionView from "./views/collections/EditCollectionView";
 import ItemDetailsView from "./views/items/ItemDetailsView";
+import AdminLayout from "./layouts/AdminLayout";
+import AdminPanelView from "./views/admin/AdminPanelView";
 
 export default function Router() {
     return (
@@ -36,6 +38,10 @@ export default function Router() {
                         <Route element={<ProtectedLayout />}>
                             <Route path="/collections/create" element={<CreateCollectionView />} />
                             <Route path="/collections/:collectionId/edit" element={<EditCollectionView />} />
+                        </Route>
+
+                        <Route element={<AdminLayout />}>
+                            <Route path="/admin" element={<AdminPanelView />} />
                         </Route>
 
                         <Route element={<DynamicLayout />}>

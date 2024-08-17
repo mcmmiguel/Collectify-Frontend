@@ -23,8 +23,32 @@ export const userSchema = authSchema.pick({
     _id: z.string(),
     isBlocked: z.boolean(),
     isAdmin: z.boolean(),
+    createdAt: z.string(),
+    updatedAt: z.string(),
 });
 
+export const authUserSchema = authSchema.pick({
+    name: true,
+    email: true,
+}).extend({
+    _id: z.string(),
+    isBlocked: z.boolean(),
+    isAdmin: z.boolean(),
+});
+
+export const allUsersSchema = z.array(
+    userSchema.pick({
+        _id: true,
+        name: true,
+        email: true,
+        isBlocked: true,
+        isAdmin: true,
+        createdAt: true,
+        updatedAt: true,
+    }),
+);
+
+export type AuthUser = z.infer<typeof authUserSchema>;
 export type User = z.infer<typeof userSchema>;
 
 // COMMENTS

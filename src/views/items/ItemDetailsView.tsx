@@ -9,9 +9,13 @@ import UserComment from "@/components/comments/UserComment";
 import { getItemById } from "@/api/ItemAPI";
 import socket from "@/lib/socket";
 import { useAuth } from "@/hooks/useAuth";
+import defaultImage from '/image-default.jpg';
 import { CommentFormData, Comment, Like } from "@/types/index";
+import { useTranslation } from "react-i18next";
 
 const ItemDetailsView = () => {
+
+    const { t } = useTranslation();
 
     const initialValues: CommentFormData = {
         comment: '',
@@ -118,7 +122,7 @@ const ItemDetailsView = () => {
                 <div className="col-span-1 rounded-lg max-h-96 relative">
                     <img
                         className="w-full h-full object-contain rounded-lg  object-top "
-                        src={data.image}
+                        src={data.image || defaultImage}
                         alt={data.itemName}
                     />
                 </div>
@@ -133,7 +137,7 @@ const ItemDetailsView = () => {
                 </div>
             </div>
 
-            <p className="text-text-light dark:text-text-dark font-bold text-2xl my-5">Add a comment</p>
+            <p className="text-text-light dark:text-text-dark font-bold text-2xl my-5">{t("ItemView_AddAComment")}</p>
 
             {user &&
                 <form
@@ -145,7 +149,7 @@ const ItemDetailsView = () => {
                         <input
                             id="comment"
                             {...register('comment')}
-                            placeholder={`You are comment as ${user?.name}`}
+                            placeholder={t("ItemView_CommentAs", { name: user.name })}
                             className="w-full h-full focus:outline-none bg-transparent"
                         />
 
@@ -157,7 +161,7 @@ const ItemDetailsView = () => {
             }
 
             {comments.length === 0
-                ? <p className="text-text-light dark:text-text-dark font-bold text-lg my-5">No comments yet...</p>
+                ? <p className="text-text-light dark:text-text-dark font-bold text-lg my-5">{t("ItemView_NoComments")}</p>
                 : (
                     comments.map((comment, index) => (
                         <UserComment key={index} comment={comment} />

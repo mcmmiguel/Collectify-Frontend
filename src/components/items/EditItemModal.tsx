@@ -7,6 +7,7 @@ import ItemForm from './ItemForm';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { updateItem } from '@/api/ItemAPI';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 type EditItemModalProps = {
     data: Item;
@@ -16,6 +17,7 @@ type EditItemModalProps = {
 export default function EditItemModal({ data, itemId }: EditItemModalProps) {
 
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
     const params = useParams();
     const collectionId = params.collectionId!;
@@ -80,11 +82,11 @@ export default function EditItemModal({ data, itemId }: EditItemModalProps) {
                                     as="h3"
                                     className="font-black text-4xl my-5 text-text-light dark:text-text-dark"
                                 >
-                                    Edit Item
+                                    {t("EditItem_Title")}
                                 </DialogTitle>
 
-                                <p className="text-xl font-bold text-text-light dark:text-text-dark">Make changes to an Item in {''}
-                                    <span className="text-secondary-light dark:secondary-light-dark">this form</span>
+                                <p className="text-xl font-bold text-text-light dark:text-text-dark">{t("EditItem_Subtitle1")}
+                                    <span className="text-secondary-light dark:secondary-light-dark">{t("EditItem_Subtitle2")}</span>
                                 </p>
 
                                 <form
@@ -98,7 +100,7 @@ export default function EditItemModal({ data, itemId }: EditItemModalProps) {
                                     <input
                                         type='submit'
                                         className={`bg-secondary-dark hover:bg-secondary-dark-dark w-full block p-3 text-text-dark font-bold rounded-lg cursor-pointer transition-colors uppercase ${updateItemMutation.isPending ? "opacity-50 cursor-not-allowed" : ""}`}
-                                        value={"Save changes"}
+                                        value={t("EditItem_Button")}
                                     />
                                 </form>
                             </DialogPanel>

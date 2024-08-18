@@ -5,9 +5,11 @@ import useUserActionMutation from "@/hooks/useUserActionMutation";
 import { User } from "@/types/index";
 import { UseMutateFunction, useQuery } from "@tanstack/react-query";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const AdminPanelView = () => {
 
+    const { t } = useTranslation();
     const [selectedUsers, setSelectedUsers] = useState<User['_id'][] | undefined>([]);
     const [dialogConfig, setDialogConfig] = useState({
         title: '',
@@ -31,7 +33,7 @@ const AdminPanelView = () => {
     const handleUserAction = (actionName: string, mutationFn: UseMutateFunction<string | undefined, Error, string, unknown>) => {
         setDialogConfig({
             title: `${actionName}`,
-            message: `Are you sure you want to ${actionName.toLowerCase()} ${selectedUsers?.length} user(s)?`,
+            message: t("User_Message", { actionName: actionName.toLowerCase(), users: selectedUsers?.length }),
             isOpen: true,
             onConfirm: () => {
                 setDialogConfig(prev => ({ ...prev, isOpen: false }));
@@ -44,31 +46,31 @@ const AdminPanelView = () => {
     };
 
     const handleBlockUsers = () => {
-        handleUserAction('Block', blockUserMutation);
+        handleUserAction(t("BlockUser_Title"), blockUserMutation);
     };
 
     const handleUnlockUsers = () => {
-        handleUserAction('Unlock', unlockUserMutation);
+        handleUserAction(t("UnlockUser_Title"), unlockUserMutation);
     };
 
     const handleAssignAdmin = () => {
-        handleUserAction('Assign as Admin', assignAdminMutation);
+        handleUserAction(t("AssignAsAdmin_Title"), assignAdminMutation);
     };
 
     const handleRemoveAdmin = () => {
-        handleUserAction('Assign as User', removeAdminMutation);
+        handleUserAction(t("AssignAsUser_Title"), removeAdminMutation);
     };
 
     const handleDeleteUser = () => {
-        handleUserAction('Delete', deleteUserMutation);
+        handleUserAction(t("DeleteUser_Title"), deleteUserMutation);
     };
 
     return (
         <>
             <h1 className="text-center text-2xl font-medium text-text-light dark:text-text-dark my-5">
-                Manage all {''}
+                {t("AdminPanel_Title1")}{''}
                 <span className="text-secondary-light font-bold">
-                    your users.
+                    {t("AdminPanel_Title2")}
                 </span>
             </h1>
 

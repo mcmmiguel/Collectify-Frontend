@@ -4,11 +4,15 @@ import { Bars3Icon } from '@heroicons/react/20/solid'
 import { Link } from 'react-router-dom'
 import { useAuth } from '@/hooks/useAuth'
 import { useTheme } from '@/hooks/useTheme'
+import { useTranslation } from 'react-i18next'
+import useLanguage from '@/hooks/useLanguage'
 
 const NavMenu = () => {
 
+    const { t } = useTranslation();
     const { user, logout } = useAuth();
     const { enabledDarkMode, setEnabledDarkMode } = useTheme();
+    const { englishEnabled, setEnglishEnabled } = useLanguage();
 
     return (
         <Popover className="relative z-20">
@@ -27,27 +31,27 @@ const NavMenu = () => {
             >
                 <PopoverPanel className="absolute left-1/2 z-10 mt-5 flex w-screen lg:max-w-min -translate-x-1/2 lg:-translate-x-48">
                     <div className="w-full lg:w-56 shrink rounded-xl bg-background-light dark:bg-border-dark p-4 text-sm font-semibold leading-6 text-text-light dark:text-text-dark shadow-lg ring-1 ring-gray-900/5">
-                        <p className='text-center'>Hello: {user?.name}</p>
+                        <p className='text-center'>{t("NavMenu_Greeting", { name: user?.name })}</p>
                         <Link
                             to='/profile'
                             className='block p-2 dark:text-text-dark hover:text-hover-link-light hover:dark:text-hover-link-dark'
-                        >Profile</Link>
+                        >{t("NavMenu_Profile")}</Link>
                         <Link
                             to='/admin'
                             className='block p-2 dark:text-text-dark hover:text-hover-link-light hover:dark:text-hover-link-dark'
-                        >Admin Panel</Link>
+                        >{t("NavMenu_AdminPanel")}</Link>
                         <button
                             className='block p-2 dark:text-text-dark hover:text-hover-link-light hover:dark:text-hover-link-dark'
                             type='button'
                             onClick={logout}
                         >
-                            Log Out
+                            {t("NavMenu_Logout")}
                         </button>
 
                         <hr />
 
                         <div className='p-2 flex justify-between items-center '>
-                            <p>Dark Mode</p>
+                            <p>{t("ThemeLight_Text")}</p>
                             <Switch
                                 checked={enabledDarkMode}
                                 onChange={setEnabledDarkMode}
@@ -55,6 +59,19 @@ const NavMenu = () => {
                             >
                                 <span className="size-4 translate-x-1 rounded-full bg-white transition group-data-[checked]:translate-x-6" />
                             </Switch>
+                            <p>{t("ThemeDark_Text")}</p>
+                        </div>
+
+                        <div className='p-2 flex justify-between items-center '>
+                            <p>ES</p>
+                            <Switch
+                                checked={englishEnabled}
+                                onChange={() => setEnglishEnabled(!englishEnabled)}
+                                className="group inline-flex h-6 w-11 items-center rounded-full bg-gray-200 transition data-[checked]:bg-blue-600"
+                            >
+                                <span className="size-4 translate-x-1 rounded-full bg-white transition group-data-[checked]:translate-x-6" />
+                            </Switch>
+                            <p>EN</p>
                         </div>
                     </div>
                 </PopoverPanel>

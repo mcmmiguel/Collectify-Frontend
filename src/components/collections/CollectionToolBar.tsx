@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteCollection } from "@/api/CollectionAPI";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 type CollectionToolBarProps = {
     collectionId: Collection['_id'];
@@ -13,6 +14,7 @@ type CollectionToolBarProps = {
 
 const CollectionToolBar = ({ collectionId }: CollectionToolBarProps) => {
 
+    const { t } = useTranslation();
     const [isOpen, setIsOpen] = useState(false);
 
     const navigate = useNavigate();
@@ -56,8 +58,8 @@ const CollectionToolBar = ({ collectionId }: CollectionToolBarProps) => {
             </div>
 
             <ConfirmationDialog
-                title="Delete collection?"
-                message="Are you sure you want to delete this collection? All of your data will be permanently removed."
+                title={t("DeleteCollection_Title")}
+                message={t("DeleteCollection_Message")}
                 isOpen={isOpen}
                 onClose={() => setIsOpen(false)}
                 onConfirm={handleDeleteConfirmation}

@@ -4,8 +4,11 @@ import { useMutation } from "@tanstack/react-query";
 import CollectionForm from "@/components/collections/CollectionForm";
 import { createCollection, uploadImageToCloudinary } from "@/api/CollectionAPI";
 import { CollectionFormData } from "@/types/index";
+import { useTranslation } from "react-i18next";
 
 const CreateCollectionView = () => {
+
+    const { t } = useTranslation();
 
     const initialValues: CollectionFormData = {
         collectionName: '',
@@ -59,7 +62,7 @@ const CreateCollectionView = () => {
 
                     <input
                         type="submit"
-                        value="Create"
+                        value={t("CreateCollection_CreateButton")}
                         disabled={uploadImageMutation.isPending || createCollectionMutation.isPending}
                         className={`bg-secondary-dark hover:bg-secondary-dark-dark w-full block p-2 text-text-dark font-bold rounded-lg cursor-pointer transition-colors uppercase ${createCollectionMutation.isPending ? "opacity-50 cursor-not-allowed" : ""}`}
                     />

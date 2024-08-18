@@ -14,13 +14,15 @@ export const ThemeContext = createContext<ThemeContextProps>({} as ThemeContextP
 
 export const ThemeProvider = ({ children }: ThemeProviderProps) => {
 
-    const [enabledDarkMode, setEnabledDarkMode] = useState(false);
+    const [enabledDarkMode, setEnabledDarkMode] = useState(localStorage.getItem('theme') === 'dark');
 
     useEffect(() => {
         if (enabledDarkMode) {
             document.documentElement.classList.add('dark');
+            localStorage.setItem('theme', 'dark')
         } else {
             document.documentElement.classList.remove('dark');
+            localStorage.setItem('theme', 'light')
         }
     }, [enabledDarkMode]);
 

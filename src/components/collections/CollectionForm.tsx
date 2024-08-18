@@ -1,6 +1,7 @@
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 import { ErrorMessage } from "../ErrorMessage";
 import { CollectionFormData } from '@/types/index';
+import { useTranslation } from "react-i18next";
 
 type CollectionFormProps = {
     errors: FieldErrors<CollectionFormData>;
@@ -8,19 +9,22 @@ type CollectionFormProps = {
 }
 
 const CollectionForm = ({ errors, register }: CollectionFormProps) => {
+
+    const { t } = useTranslation();
+
     return (
         <>
             <div className="mb-5 space-y-3">
                 <label htmlFor="collectionName" className="text-sm uppercase font-bold">
-                    Collection Name
+                    {t("CreateCollection_Name")}
                 </label>
                 <input
                     id="collectionName"
                     className="w-full p-2  border border-gray-200 rounded-lg"
                     type="text"
-                    placeholder="Xbox Games"
+                    placeholder={t("CreateCollection_NamePlaceholder")}
                     {...register("collectionName", {
-                        required: "The collection name is required",
+                        required: t("CreateCollection_NameRequired"),
                     })}
                 />
 
@@ -31,15 +35,15 @@ const CollectionForm = ({ errors, register }: CollectionFormProps) => {
 
             <div className="mb-5 space-y-3">
                 <label htmlFor="description" className="text-sm uppercase font-bold">
-                    Description
+                    {t("CreateCollection_Description")}
                 </label>
                 <input
                     id="description"
                     className="w-full p-2  border border-gray-200 rounded-lg"
                     type="text"
-                    placeholder="My favorite ones"
+                    placeholder={t("CreateCollection_DescriptionPlaceholder")}
                     {...register("description", {
-                        required: "The description is required",
+                        required: t("CreateCollection_DescriptionRequired"),
                     })}
                 />
 
@@ -50,7 +54,7 @@ const CollectionForm = ({ errors, register }: CollectionFormProps) => {
 
             <div className="mb-5 space-y-3">
                 <label htmlFor="image" className="text-sm uppercase font-bold block">
-                    Upload an image
+                    {t("CreateCollection_Image")}
                 </label>
                 <input
                     type="file"

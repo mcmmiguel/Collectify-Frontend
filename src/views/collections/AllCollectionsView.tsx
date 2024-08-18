@@ -4,10 +4,12 @@ import Fab from "@/components/collections/FAB";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import { useAuth } from "@/hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 
 const AllCollectionsView = () => {
 
     const { user } = useAuth();
+    const { t } = useTranslation();
 
     const { data, isLoading } = useQuery({
         queryKey: ['allCollections'],
@@ -17,9 +19,9 @@ const AllCollectionsView = () => {
     return (
         <>
             <h1 className="text-center text-2xl font-medium text-text-light dark:text-text-dark my-5">
-                Get inspired by the {''}
+                {t("AllCollectionsView_TitleText_1st")} {''}
                 <span className="text-secondary-light font-bold">
-                    community's collections.
+                    {t("AllCollectionsView_TitleText_2st")}
                 </span>
             </h1>
 

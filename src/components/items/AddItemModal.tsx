@@ -8,9 +8,11 @@ import ItemForm from './ItemForm';
 import { uploadImageToCloudinary } from '@/api/CollectionAPI';
 import { createItem } from '@/api/ItemAPI';
 import { ItemFormData } from '@/types/index';
+import { useTranslation } from 'react-i18next';
 
 const AddItemModal = () => {
 
+    const { t } = useTranslation();
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -103,11 +105,11 @@ const AddItemModal = () => {
                                         as="h3"
                                         className="font-black text-4xl my-5 text-text-light dark:text-text-dark"
                                     >
-                                        New Item
+                                        {t("CreateItem_Title")}
                                     </DialogTitle>
 
-                                    <p className="text-xl font-bold text-text-light dark:text-text-dark">Complete the form and create  {''}
-                                        <span className="text-secondary-dark dark:text-secondary-light-dark">an item</span>
+                                    <p className="text-xl font-bold text-text-light dark:text-text-dark"> {t("CreateItem_Subtitle1")} {''}
+                                        <span className="text-secondary-dark dark:text-secondary-light-dark">{t("CreateItem_Subtitle2")}</span>
                                     </p>
 
                                     <form
@@ -121,7 +123,7 @@ const AddItemModal = () => {
                                         <input
                                             type='submit'
                                             className={` bg-secondary-dark hover:bg-secondary-dark-dark w-full block p-3 text-text-dark font-bold rounded-lg cursor-pointer transition-colors uppercase ${createItemMutation.isPending ? "opacity-50 cursor-not-allowed" : ""}`}
-                                            value={"Save Item"}
+                                            value={t("CreateItem_Button")}
                                         />
                                     </form>
 

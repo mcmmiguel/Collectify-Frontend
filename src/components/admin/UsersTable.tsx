@@ -1,5 +1,6 @@
 import { User } from "@/types/index";
 import { calculateDaysDifference } from "@/utils/dates";
+import { useTranslation } from "react-i18next";
 
 type UsersTableProps = {
     usersList: User[] | undefined;
@@ -8,6 +9,8 @@ type UsersTableProps = {
 }
 
 const UsersTable = ({ usersList, selectedUsers, setSelectedUsers }: UsersTableProps) => {
+
+    const { t } = useTranslation();
 
     const handleSelectAll = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.checked) {
@@ -41,11 +44,11 @@ const UsersTable = ({ usersList, selectedUsers, setSelectedUsers }: UsersTablePr
                     </td>
 
                     <th className="px-5 py-3 text-text-light dark:text-text-dark border-b border-border-light">ID</th>
-                    <th className="px-5 py-3 text-text-light dark:text-text-dark border-b border-border-light">Name</th>
-                    <th className="px-5 py-3 text-text-light dark:text-text-dark border-b border-border-light">Email</th>
-                    <th className="px-5 py-3 text-text-light dark:text-text-dark border-b border-border-light">Time since register</th>
-                    <th className="px-5 py-3 text-text-light dark:text-text-dark border-b border-border-light">Access</th>
-                    <th className="px-5 py-3 text-text-light dark:text-text-dark border-b border-border-light">Status</th>
+                    <th className="px-5 py-3 text-text-light dark:text-text-dark border-b border-border-light">{t("AdminPanel_TableName")}</th>
+                    <th className="px-5 py-3 text-text-light dark:text-text-dark border-b border-border-light">{t("AdminPanel_TableEmail")}</th>
+                    <th className="px-5 py-3 text-text-light dark:text-text-dark border-b border-border-light">{t("AdminPanel_TableTime")}</th>
+                    <th className="px-5 py-3 text-text-light dark:text-text-dark border-b border-border-light">{t("AdminPanel_TableAccess")}</th>
+                    <th className="px-5 py-3 text-text-light dark:text-text-dark border-b border-border-light">{t("AdminPanel_TableStatus")}</th>
                 </tr>
             </thead>
             <tbody>
@@ -65,12 +68,12 @@ const UsersTable = ({ usersList, selectedUsers, setSelectedUsers }: UsersTablePr
                         <td className="py-3 text-text-light dark:text-text-dark">{user.name}</td>
                         <td className="py-3 text-text-light dark:text-text-dark">{user.email}</td>
                         <td className='py-3 text-text-light dark:text-text-dark'>{calculateDaysDifference(user.createdAt)}</td>
-                        <td className="py-3 text-text-light dark:text-text-dark">{user.isAdmin ? 'Admin' : 'User'}</td>
-                        <td className={`text-center ${user.isBlocked ? 'text-error-light' : 'text-success-light'}`}>{user.isBlocked ? 'Blocked' : 'Active'}</td>
+                        <td className="py-3 text-text-light dark:text-text-dark">{user.isAdmin ? t("AdminPanel_Admin") : t("AdminPanel_User")}</td>
+                        <td className={`text-center ${user.isBlocked ? 'text-error-light' : 'text-success-light'}`}>{user.isBlocked ? t("AdminPanel_Blocked") : t("AdminPanel_Active")}</td>
                     </tr>
                 ))}
             </tbody>
         </table>
     )
 }
-export default UsersTable
+export default UsersTable;

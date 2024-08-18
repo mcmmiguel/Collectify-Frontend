@@ -12,6 +12,7 @@ import { deleteItem } from '@/api/ItemAPI';
 import { toast } from 'react-toastify';
 import { HeartIcon } from '@heroicons/react/24/outline';
 import socket from '@/lib/socket';
+import { useTranslation } from 'react-i18next';
 
 type ItemCardProps = {
     item: Item;
@@ -20,6 +21,7 @@ type ItemCardProps = {
 
 const ItemCard = ({ item, collection }: ItemCardProps) => {
 
+    const { t } = useTranslation();
     const [comments, setComments] = useState<Comment[]>([]);
     const [likes, setLikes] = useState<Like[]>([]);
 
@@ -71,7 +73,7 @@ const ItemCard = ({ item, collection }: ItemCardProps) => {
                 <div className="min-w-0 flex-auto space-y-2">
                     <div className='mb-2'>
                         {hasOwnership(collection.owner, user) &&
-                            <p className='font-bold text-xs uppercase bg-transparent text-primary-light dark:text-primary-light-dark border-2 border-primary-light dark:border-primary-light-dark rounded-lg inline-block py-1 px-5'>Manager</p>
+                            <p className='font-bold text-xs uppercase bg-transparent text-primary-light dark:text-primary-light-dark border-2 border-primary-light dark:border-primary-light-dark rounded-lg inline-block py-1 px-5'>{t("ItemCard_ManagerBadge")}</p>
                         }
                     </div>
                     <Link
@@ -104,7 +106,7 @@ const ItemCard = ({ item, collection }: ItemCardProps) => {
                                     type='button'
                                     className='block px-3 py-1 text-sm leading-6 text-text-light dark:text-text-dark'
                                 >
-                                    View
+                                    {t("ItemCard_ViewOption")}
                                 </Link>
                             </MenuItem>
 
@@ -116,7 +118,7 @@ const ItemCard = ({ item, collection }: ItemCardProps) => {
                                             className='block px-3 py-1 text-sm leading-6 text-text-light dark:text-text-dark'
                                             onClick={() => navigate(location.pathname + `?editItem=${item._id}`)}
                                         >
-                                            Edit
+                                            {t("ItemCard_EditOption")}
                                         </button>
                                     </MenuItem>
                                     <MenuItem>
@@ -125,7 +127,7 @@ const ItemCard = ({ item, collection }: ItemCardProps) => {
                                             className='block px-3 py-1 text-sm leading-6 text-error-light dark:text-error-dark'
                                             onClick={() => mutate({ collectionId, itemId: item._id })}
                                         >
-                                            Delete
+                                            {t("ItemCard_DeleteOption")}
                                         </button>
                                     </MenuItem>
                                 </>

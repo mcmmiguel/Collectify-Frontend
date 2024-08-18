@@ -1,10 +1,14 @@
 import Logo from "@/components/Logo";
 import NavMenu from "@/components/NavMenu";
 import { ReactNode } from "react";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
 const AppLayout = ({ children }: { children: ReactNode }) => {
+
+    const { t } = useTranslation();
+
     return (
         <>
             <header className="py-5 bg-background-light dark:bg-background-dark border-b-border-dark">
@@ -24,7 +28,7 @@ const AppLayout = ({ children }: { children: ReactNode }) => {
             </section>
 
             <footer className="py-5">
-                <p className="text-center text-text-light dark:text-text-dark">All rights reserved. {new Date().getFullYear()}</p>
+                <p className="text-center text-text-light dark:text-text-dark">{t("Footer") + new Date().getFullYear()}</p>
             </footer>
 
             <ToastContainer

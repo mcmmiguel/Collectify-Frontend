@@ -6,8 +6,11 @@ import { ErrorMessage } from "@/components/ErrorMessage";
 import { loginAPI } from "@/api/AuthAPI";
 import { UserLoginForm } from "@/types/index";
 import { useAuth } from "@/hooks/useAuth";
+import { useTranslation } from "react-i18next";
 
 const LoginView = () => {
+
+    const { t } = useTranslation();
 
     const initialValues: UserLoginForm = {
         email: '',
@@ -39,7 +42,7 @@ const LoginView = () => {
                 <div className="flex flex-col gap-2">
                     <label
                         className="font-normal text-xl text-text-light dark:text-text-dark"
-                    >Email</label>
+                    >{t("Login_Email")}</label>
 
                     <input
                         id="email"
@@ -47,10 +50,10 @@ const LoginView = () => {
                         placeholder="johndoe@gmail.com"
                         className="w-full p-3  border-gray-300 border rounded-lg"
                         {...register("email", {
-                            required: "Email is required",
+                            required: t("Login_EmailRequired"),
                             pattern: {
                                 value: /\S+@\S+\.\S+/,
-                                message: "Invalid email",
+                                message: t("Register_EmailRequired"),
                             },
                         })}
                     />
@@ -59,17 +62,17 @@ const LoginView = () => {
                     )}
                 </div>
 
-                <div className="flex flex-col gap-5">
+                <div className="flex flex-col gap-2">
                     <label
                         className="font-normal text-xl text-text-light dark:text-text-dark"
-                    >Password</label>
+                    >{t("Login_Password")}</label>
 
                     <input
                         type="password"
-                        placeholder="Type your password"
+                        placeholder={t("Login_PasswordPlaceholder")}
                         className="w-full p-3  border-gray-300 border rounded-lg"
                         {...register("password", {
-                            required: "Password is required",
+                            required: t("Login_PasswordRequired"),
                         })}
                     />
                     {errors.password && (
@@ -79,19 +82,19 @@ const LoginView = () => {
 
                 <input
                     type="submit"
-                    value='Sign in'
+                    value={t("Login_SignIn")}
                     className="bg-primary-light hover:bg-primary-dark w-full p-3  text-white dark:text-text-dark font-black text-xl cursor-pointer rounded-lg"
                 />
             </form>
 
             <nav className="mt-10 flex flex-col space-y-4">
                 <p className="text-center text-text-light dark:text-text-dark font-normal">
-                    You don't have an account? {''}
+                    {t("Login_Message")} {''}
                     <Link
                         to={'/auth/register'}
                         className="text-link-light hover:text-hover-link-light"
                     >
-                        Sign Up
+                        {t("Login_SignIn")}
                     </Link>
                 </p>
             </nav>

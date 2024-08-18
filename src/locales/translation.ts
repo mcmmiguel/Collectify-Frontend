@@ -99,6 +99,10 @@ const resources = {
             "ItemView_CommentAs": "You are comment as {{name}}",
             "ItemView_NoComments": "No comments yet...",
 
+            // PROFILE
+            "Profile_Title1": "Your collections in ",
+            "Profile_Title2": "one place.",
+            "Profile_NoCollections": "You don't have collections yet...",
 
             // ADMIN PANEL
             "AdminPanel_Title1": "Manage all ",
@@ -225,6 +229,11 @@ const resources = {
             "ItemView_AddAComment": "Añadir un comentario",
             "ItemView_CommentAs": "Estás comentando como {{name}}",
             "ItemView_NoComments": "Aún no hay comentarios...",
+
+            // PERFIL
+            "Profile_Title1": "Tus colecciones en ",
+            "Profile_Title2": "un solo lugar.",
+            "Profile_NoCollections": "Todavía no tienes ninguna colección",
 
             // PANEL DE ADMINISTRADOR
             "AdminPanel_Title1": "Gestiona todos ",

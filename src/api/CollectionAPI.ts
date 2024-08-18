@@ -1,6 +1,7 @@
 import api from "@/lib/axios";
-import { allCollectionsSchema, Collection, CollectionFormData, fullCollectionSchema } from "../types";
+import { Collection, CollectionFormData, collectionWithOwner, fullCollectionSchema } from "../types";
 import axios, { isAxiosError } from "axios";
+import { z } from "zod";
 
 export async function createCollection(formData: CollectionFormData) {
     try {
@@ -18,7 +19,7 @@ export async function getAllCollections() {
     try {
         const url = '/public/collections';
         const { data } = await api(url);
-        const response = allCollectionsSchema.safeParse(data);
+        const response = z.array(collectionWithOwner).safeParse(data);
         console.log(response);
         if (response.success) {
             return response.data;

@@ -15,6 +15,7 @@ import EditCollectionView from "./views/collections/EditCollectionView";
 import ItemDetailsView from "./views/items/ItemDetailsView";
 import AdminLayout from "./layouts/AdminLayout";
 import AdminPanelView from "./views/admin/AdminPanelView";
+import ProfileView from "./views/profile/ProfileView";
 
 export default function Router() {
     return (
@@ -38,6 +39,7 @@ export default function Router() {
                         <Route element={<ProtectedLayout />}>
                             <Route path="/collections/create" element={<CreateCollectionView />} />
                             <Route path="/collections/:collectionId/edit" element={<EditCollectionView />} />
+                            <Route path="/profile" element={<ProfileView />} />
                         </Route>
 
                         <Route element={<AdminLayout />}>

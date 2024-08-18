@@ -120,7 +120,7 @@ export const collectionWithOwner = collectionSchema.pick({ //Collection with own
         _id: true,
         name: true,
     }),
-})
+});
 
 export const fullCollectionSchema = collectionSchema.pick({ //Collection with populated items
     _id: true,
@@ -132,31 +132,12 @@ export const fullCollectionSchema = collectionSchema.pick({ //Collection with po
     items: z.optional(z.array(
         itemSchema,
     )),
-})
-
-export const allCollectionsSchema = z.array( //AllCollectionsView
-    collectionWithOwner.pick({
-        _id: true,
-        collectionName: true,
-        description: true,
-        image: true,
-        items: true,
-        owner: true,
-    })
-);
-
+});
 
 export type Collection = z.infer<typeof collectionSchema>;
 export type CollectionWithOwner = z.infer<typeof collectionWithOwner>;
 export type FullCollection = z.infer<typeof fullCollectionSchema>;
 export type CollectionFormData = Pick<Collection, 'collectionName' | 'description' | 'image'>;
-
-
-
-
-
-
-
 
 
 // CLOUDINARY IMAGES

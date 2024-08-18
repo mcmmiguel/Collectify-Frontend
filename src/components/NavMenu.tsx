@@ -50,8 +50,8 @@ const NavMenu = () => {
 
                         <hr />
 
-                        <div className='p-2 flex justify-between items-center '>
-                            <p>{t("ThemeLight_Text")}</p>
+                        <div className='p-2 flex justify-between items-center'>
+                            <p className='w-1/3'>{t("ThemeLight_Text")}</p>
                             <Switch
                                 checked={enabledDarkMode}
                                 onChange={setEnabledDarkMode}
@@ -59,11 +59,11 @@ const NavMenu = () => {
                             >
                                 <span className="size-4 translate-x-1 rounded-full bg-white transition group-data-[checked]:translate-x-6" />
                             </Switch>
-                            <p>{t("ThemeDark_Text")}</p>
+                            <p className='w-1/3 text-end'>{t("ThemeDark_Text")}</p>
                         </div>
 
                         <div className='p-2 flex justify-between items-center '>
-                            <p>ES</p>
+                            <p className='w-1/3'>ES</p>
                             <Switch
                                 checked={englishEnabled}
                                 onChange={() => setEnglishEnabled(!englishEnabled)}
@@ -71,7 +71,7 @@ const NavMenu = () => {
                             >
                                 <span className="size-4 translate-x-1 rounded-full bg-white transition group-data-[checked]:translate-x-6" />
                             </Switch>
-                            <p>EN</p>
+                            <p className='w-1/3 text-end'>EN</p>
                         </div>
                     </div>
                 </PopoverPanel>

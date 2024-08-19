@@ -5,6 +5,8 @@ import CollectionForm from "@/components/collections/CollectionForm";
 import { createCollection, uploadImageToCloudinary } from "@/api/CollectionAPI";
 import { CollectionFormData } from "@/types/index";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
+import { ArrowLeftIcon } from "@heroicons/react/20/solid";
 
 const CreateCollectionView = () => {
 
@@ -51,9 +53,21 @@ const CreateCollectionView = () => {
 
     return (
         <>
+            <nav>
+                <Link
+                    to={`/collections`}
+                    className="flex items-center border border-primary-light w-fit p-2 text-primary-light gap-3 rounded-lg"
+                >
+                    <ArrowLeftIcon width={35} height={35} className="fill-primary-light" />
+                </Link>
+            </nav>
+
             <div className="max-w-3xl mx-auto">
+                <h1 className="text-5xl font-black text-text-light dark:text-text-dark">{t("CreateCollection_Title")}</h1>
+                <p className="text-2xl font-light mt-5 text-text-light dark:text-text-dark">{t("CreateCollection_Subtitle")}</p>
+
                 <form
-                    className="space-y-6 p-6 rounded-lg border-border-light border dark:bg-background-dark"
+                    className="mt-5 space-y-6 p-6 rounded-lg border-border-light border dark:bg-background-dark"
                     onSubmit={handleSubmit(handleForm)}
                     noValidate
                 >

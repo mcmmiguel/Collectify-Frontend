@@ -15,7 +15,7 @@ const CollectionForm = ({ errors, register }: CollectionFormProps) => {
     return (
         <>
             <div className="mb-5 space-y-3">
-                <label htmlFor="collectionName" className="text-sm uppercase font-bold">
+                <label htmlFor="collectionName" className="text-sm uppercase font-bold text-text-light dark:text-text-dark">
                     {t("CreateCollection_Name")}
                 </label>
                 <input
@@ -34,7 +34,7 @@ const CollectionForm = ({ errors, register }: CollectionFormProps) => {
             </div>
 
             <div className="mb-5 space-y-3">
-                <label htmlFor="description" className="text-sm uppercase font-bold">
+                <label htmlFor="description" className="text-sm uppercase font-bold text-text-light dark:text-text-dark">
                     {t("CreateCollection_Description")}
                 </label>
                 <input
@@ -53,7 +53,7 @@ const CollectionForm = ({ errors, register }: CollectionFormProps) => {
             </div>
 
             <div className="mb-5 space-y-3">
-                <label htmlFor="image" className="text-sm uppercase font-bold block">
+                <label htmlFor="image" className="text-sm uppercase font-bold text-text-light dark:text-text-dark block">
                     {t("CreateCollection_Image")}
                 </label>
                 <input

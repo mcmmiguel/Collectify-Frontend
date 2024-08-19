@@ -57,6 +57,8 @@ const resources = {
             "CollectionCard_Explore": "Explore",
 
             // CREATE COLLECTION
+            "CreateCollection_Title": "Create collection",
+            "CreateCollection_Subtitle": "Complete the form and create a collection",
             "CreateCollection_Name": "Collection Name",
             "CreateCollection_NamePlaceholder": "Xbox Games",
             "CreateCollection_NameRequired": "The collection name is required",
@@ -185,6 +187,8 @@ const resources = {
             "AllCollectionsView_CreateFAB": "Nueva colección",
 
             // CREATE COLLECTION
+            "CreateCollection_Title": "Crear colección",
+            "CreateCollection_Subtitle": "Completa el siguiente formulario y crea una colección.",
             "CreateCollection_Name": "Nombre de la colección",
             "CreateCollection_NamePlaceholder": "Juegos de Xbox",
             "CreateCollection_NameRequired": "El nombre de la colección es obligatorio",

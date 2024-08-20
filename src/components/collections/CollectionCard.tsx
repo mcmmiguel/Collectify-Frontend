@@ -13,35 +13,40 @@ const CollectionCard = ({ collection }: CollectionCardProps) => {
 
     return (
         <div className="w-64 min-h-96 bg-background-light dark:bg-border-dark rounded-lg p-3 my-5 flex flex-col justify-between">
+            <div className='h-36 w-full overflow-hidden rounded-lg'>
+                <img
+                    src={collection.image ? collection.image : '/image-default.jpg'}
+                    alt={collection.collectionName}
+                    className="w-full h-full object-cover rounded-lg"
+                />
+            </div>
             <div className="flex justify-between">
                 {typeof collection.owner === 'object' && 'name' in collection.owner &&
                     <p className="block bg-background-light dark:bg-background-dark border border-secondary-dark text-secondary-dark rounded-lg px-3 py-0.5">
                         {collection.owner.name}
                     </p>
                 }
-                <Link
-                    to={`/collections/${collection._id}`}
-                    className="flex items-center gap-1 px-3 py-0.5 bg-background-dark dark:bg-background-light text-text-dark dark:text-text-light rounded-lg cursor-pointer"
-                >
-                    {t("CollectionCard_Explore")} <ArrowUpRightIcon width={15} height={15} />
-                </Link>
             </div>
             <div>
-                <p className="text-text-light dark:text-text-dark font-bold text-xl my-3">
+                <p className="text-text-light dark:text-text-dark font-bold text-xl">
                     {collection.collectionName}
                 </p>
+
+                {typeof collection.category === 'object' && 'categoryName' in collection.category &&
+                    <p className='text-text-light dark:text-text-dark '>{collection.category.categoryName}</p>
+                }
+
                 <p className="text-text-light dark:text-text-dark my-3 break-words">
                     {collection.description}
                 </p>
             </div>
-            <div className='h-52 overflow-hidden rounded-lg'>
-                <p>TAGS</p>
-                <img
-                    src={collection.image ? collection.image : '/image-default.jpg'}
-                    alt={collection.collectionName}
-                    className="w-full h-full object-contain rounded-lg"
-                />
-            </div>
+            <Link
+                to={`/collections/${collection._id}`}
+                className="flex items-center justify-center gap-1 px-3 py-0.5 bg-background-dark dark:bg-background-light text-text-dark dark:text-text-light rounded-lg cursor-pointer"
+            >
+                {t("CollectionCard_Explore")} <ArrowUpRightIcon width={15} height={15} />
+            </Link>
+
         </div>
     )
 }

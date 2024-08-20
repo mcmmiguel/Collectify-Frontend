@@ -6,6 +6,7 @@ import { updateCollection, uploadImageToCloudinary } from "@/api/CollectionAPI";
 import { Collection, CollectionFormData } from "@/types/index";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import BackButton from "../BackButton";
 
 type EditCollectionFormProps = {
     data: CollectionFormData;
@@ -20,8 +21,9 @@ const EditCollectionForm = ({ data, collectionId }: EditCollectionFormProps) => 
         collectionName: data.collectionName,
         description: data.description,
         image: '',
+        category: data.category,
     }
-    const { register, handleSubmit, formState: { errors } } = useForm({ defaultValues: initialValues });
+    const { register, handleSubmit, formState: { errors }, setValue } = useForm({ defaultValues: initialValues });
 
     const navigate = useNavigate();
     const queryClient = useQueryClient();
@@ -72,36 +74,44 @@ const EditCollectionForm = ({ data, collectionId }: EditCollectionFormProps) => 
     };
 
     return (
-        <form
-            className="space-y-6 p-6 rounded-lg border-border-light border dark:bg-background-dark"
-            onSubmit={handleSubmit(handleForm)}
-            noValidate
-        >
+        <>
+            <BackButton to={`/collections/${collectionId}`} />
+            <div className="max-w-3xl mx-auto">
+                <h1 className="text-5xl font-black text-text-light dark:text-text-dark">{t("EditCollection_Title")}</h1>
+                <p className="text-2xl font-light mt-5 text-text-light dark:text-text-dark">{t("EditCollection_Subtitle")}</p>
 
-            <CollectionForm register={register} errors={errors} />
+                <form
+                    className="mt-5 space-y-6 p-6 rounded-lg border-border-light border dark:bg-background-dark"
+                    onSubmit={handleSubmit(handleForm)}
+                    noValidate
+                >
 
-            {data.image &&
-                <div>
-                    <p className="mb-2 font-light">Current image: {''}
-                        <a href={data.image} className="text-info-light">
-                            {data.image}
-                        </a>
-                    </p>
-                    <img
-                        src={data.image}
-                        className="w-30 h-30 object-contain"
-                        alt={data.collectionName}
+                    <CollectionForm register={register} errors={errors} setValue={setValue} defaultValue={initialValues.category} />
+
+                    {data.image &&
+                        <div>
+                            <p className="mb-2 font-light">Current image: {''}
+                                <a href={data.image} className="text-info-light">
+                                    {data.image}
+                                </a>
+                            </p>
+                            <img
+                                src={data.image}
+                                className="w-30 h-30 object-contain"
+                                alt={data.collectionName}
+                            />
+                        </div>
+                    }
+
+                    <input
+                        type="submit"
+                        value={t("EditCollection_EditButton")}
+                        disabled={uploadImageMutation.isPending || updateCollectionMutation.isPending}
+                        className={`bg-secondary-dark hover:bg-secondary-dark-dark w-full block p-2 text-text-dark font-bold rounded-lg cursor-pointer transition-colors uppercase ${updateCollectionMutation.isPending ? "opacity-50 cursor-not-allowed" : ""}`}
                     />
-                </div>
-            }
-
-            <input
-                type="submit"
-                value={t("EditCollection_EditButton")}
-                disabled={uploadImageMutation.isPending || updateCollectionMutation.isPending}
-                className={`bg-secondary-dark hover:bg-secondary-dark-dark w-full block p-2 text-text-dark font-bold rounded-lg cursor-pointer transition-colors uppercase ${updateCollectionMutation.isPending ? "opacity-50 cursor-not-allowed" : ""}`}
-            />
-        </form>
+                </form>
+            </div>
+        </ >
     )
 }
 export default EditCollectionForm

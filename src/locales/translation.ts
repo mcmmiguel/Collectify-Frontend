@@ -66,12 +66,15 @@ const resources = {
             "CreateCollection_DescriptionPlaceholder": "My favorite games",
             "CreateCollection_DescriptionRequired": "The description is required",
             "CreateCollection_Category": "Category",
+            "CreateCollection_CategoryRequired": "Please, select a category",
             "CreateCollection_Image": "Upload an image",
             "CreateCollection_ImageButton": "---",
             "CreateCollection_CreateButton": "Create",
 
             // EDIT COLLECTION
-            "EditCollection_EditButton": "Update Chnges",
+            "EditCollection_Title": "Edit collection",
+            "EditCollection_Subtitle": "Complete the form and edit this collection",
+            "EditCollection_EditButton": "Update Changes",
 
             // ITEM CARD
             "ItemCard_ManagerBadge": "Manager",
@@ -204,6 +207,8 @@ const resources = {
             "CollectionCard_Explore": "Explorar",
 
             // EDIT COLLECTION
+            "EditCollection_Title": "Editar colección",
+            "EditCollection_Subtitle": "Completa el formulario y edita esta colección.",
             "EditCollection_EditButton": "Actualizar cambios",
 
             // ITEM CARD

@@ -5,8 +5,7 @@ import CollectionForm from "@/components/collections/CollectionForm";
 import { createCollection, uploadImageToCloudinary } from "@/api/CollectionAPI";
 import { CollectionFormData } from "@/types/index";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
-import { ArrowLeftIcon } from "@heroicons/react/20/solid";
+import BackButton from "@/components/BackButton";
 
 const CreateCollectionView = () => {
 
@@ -15,6 +14,7 @@ const CreateCollectionView = () => {
     const initialValues: CollectionFormData = {
         collectionName: '',
         description: '',
+        category: '',
     }
     const { register, handleSubmit, formState: { errors }, reset, } = useForm({ defaultValues: initialValues });
 
@@ -53,14 +53,7 @@ const CreateCollectionView = () => {
 
     return (
         <>
-            <nav>
-                <Link
-                    to={`/collections`}
-                    className="flex items-center border border-primary-light w-fit p-2 text-primary-light gap-3 rounded-lg"
-                >
-                    <ArrowLeftIcon width={35} height={35} className="fill-primary-light" />
-                </Link>
-            </nav>
+            <BackButton to="/collections" />
 
             <div className="max-w-3xl mx-auto">
                 <h1 className="text-5xl font-black text-text-light dark:text-text-dark">{t("CreateCollection_Title")}</h1>

@@ -97,11 +97,19 @@ export type Item = z.infer<typeof itemSchema>;
 export type ItemFormData = Pick<Item, 'itemName' | 'description' | 'image'>;
 
 
+// CATEGORIES
+export const categorySchema = z.object({
+    _id: z.string(),
+    categoryName: z.string()
+});
+
+
 // COLLECTIONS
 export const collectionSchema = z.object({ //Collection without populated items and owner name
     _id: z.string(),
     collectionName: z.string(),
     description: z.optional(z.string()),
+    category: z.string(),
     owner: z.string(),
     items: z.optional(z.array(
         z.string(),
@@ -120,6 +128,7 @@ export const collectionWithOwner = collectionSchema.pick({ //Collection with own
         _id: true,
         name: true,
     }),
+    category: categorySchema,
 });
 
 export const fullCollectionSchema = collectionSchema.pick({ //Collection with populated items
@@ -127,6 +136,7 @@ export const fullCollectionSchema = collectionSchema.pick({ //Collection with po
     collectionName: true,
     description: true,
     image: true,
+    category: true,
     owner: true,
 }).extend({
     items: z.optional(z.array(
@@ -137,7 +147,7 @@ export const fullCollectionSchema = collectionSchema.pick({ //Collection with po
 export type Collection = z.infer<typeof collectionSchema>;
 export type CollectionWithOwner = z.infer<typeof collectionWithOwner>;
 export type FullCollection = z.infer<typeof fullCollectionSchema>;
-export type CollectionFormData = Pick<Collection, 'collectionName' | 'description' | 'image'>;
+export type CollectionFormData = Pick<Collection, 'collectionName' | 'description' | 'image' | 'category'>;
 
 
 // CLOUDINARY IMAGES

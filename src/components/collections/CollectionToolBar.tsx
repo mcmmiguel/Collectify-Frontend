@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { ArrowLeftIcon, PencilSquareIcon, TrashIcon } from '@heroicons/react/20/solid';
+import { PencilSquareIcon, TrashIcon } from '@heroicons/react/20/solid';
 import { Collection } from "@/types/index";
 import ConfirmationDialog from "../ConfirmationDialog";
 import { useState } from "react";
@@ -7,6 +7,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteCollection } from "@/api/CollectionAPI";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
+import BackButton from "../BackButton";
 
 type CollectionToolBarProps = {
     collectionId: Collection['_id'];
@@ -37,11 +38,7 @@ const CollectionToolBar = ({ collectionId }: CollectionToolBarProps) => {
     return (
         <>
             <div className="w-full absolute z-10 top-5 flex justify-between items-center px-5">
-                <Link to={'/collections'}
-                    type="button"
-                >
-                    <ArrowLeftIcon width={35} height={35} color="white" />
-                </Link>
+                <BackButton to="/collections" color="white" />
 
                 <div className="flex gap-8 items-center">
                     <Link to={`/collections/${collectionId}/edit`}>

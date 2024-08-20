@@ -72,7 +72,7 @@ const ItemCard = ({ item, collection }: ItemCardProps) => {
                 </div>
                 <div className="min-w-0 flex-auto space-y-2">
                     <div className='mb-2'>
-                        {hasOwnership(collection.owner, user) &&
+                        {hasOwnership(collection.owner._id, user) &&
                             <p className='font-bold text-xs uppercase bg-transparent text-primary-light dark:text-primary-light-dark border-2 border-primary-light dark:border-primary-light-dark rounded-lg inline-block py-1 px-5'>{t("ItemCard_ManagerBadge")}</p>
                         }
                     </div>
@@ -110,7 +110,7 @@ const ItemCard = ({ item, collection }: ItemCardProps) => {
                                 </Link>
                             </MenuItem>
 
-                            {hasOwnership(collection.owner, user) && (
+                            {hasOwnership(collection.owner._id, user) && (
                                 <>
                                     <MenuItem>
                                         <button

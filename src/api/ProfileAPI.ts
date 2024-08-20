@@ -1,13 +1,13 @@
 import api from "@/lib/axios";
 import { isAxiosError } from "axios";
-import { fullCollectionSchema } from "../types";
+import { ownerCategoryCollection } from "../types";
 import { z } from "zod";
 
 export async function getCollectionsByOwner() {
     const url = '/collections/user';
     try {
         const { data } = await api(url);
-        const response = z.array(fullCollectionSchema).safeParse(data);
+        const response = z.array(ownerCategoryCollection).safeParse(data);
         console.log(response);
         if (response.success) return response.data;
     } catch (error) {

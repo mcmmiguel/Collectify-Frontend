@@ -1,5 +1,5 @@
 import api from "@/lib/axios";
-import { Collection, CollectionFormData, collectionWithOwner, fullCollectionSchema } from "../types";
+import { Collection, CollectionFormData, fullCollectionSchema, ownerCategoryCollection } from "../types";
 import axios, { isAxiosError } from "axios";
 import { z } from "zod";
 
@@ -19,8 +19,7 @@ export async function getAllCollections() {
     try {
         const url = '/public/collections';
         const { data } = await api(url);
-        const response = z.array(collectionWithOwner).safeParse(data);
-        console.log(response);
+        const response = z.array(ownerCategoryCollection).safeParse(data);
         if (response.success) {
             return response.data;
         }

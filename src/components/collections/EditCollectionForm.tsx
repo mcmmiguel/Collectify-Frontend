@@ -34,9 +34,9 @@ const EditCollectionForm = ({ data, collectionId }: EditCollectionFormProps) => 
             toast.error(error.message);
         },
         onSuccess: (data) => {
+            toast.success(data);
             queryClient.invalidateQueries({ queryKey: ['editCollection', collectionId] });
             queryClient.invalidateQueries({ queryKey: ['collection', collectionId] });
-            toast.success(data);
             navigate(`/collections/${collectionId}`);
         }
     });

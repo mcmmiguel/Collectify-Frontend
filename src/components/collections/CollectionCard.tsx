@@ -1,10 +1,10 @@
-import { CollectionWithOwner, FullCollection } from '@/types/index';
+import { OwnerCategoryCollection } from '@/types/index';
 import { ArrowUpRightIcon } from '@heroicons/react/24/outline';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
 type CollectionCardProps = {
-    collection: CollectionWithOwner | FullCollection;
+    collection: OwnerCategoryCollection;
 }
 
 const CollectionCard = ({ collection }: CollectionCardProps) => {
@@ -21,20 +21,16 @@ const CollectionCard = ({ collection }: CollectionCardProps) => {
                 />
             </div>
             <div className="flex justify-between">
-                {typeof collection.owner === 'object' && 'name' in collection.owner &&
-                    <p className="block bg-background-light dark:bg-background-dark border border-secondary-dark text-secondary-dark rounded-lg px-3 py-0.5">
-                        {collection.owner.name}
-                    </p>
-                }
+                <p className="block bg-background-light dark:bg-background-dark border border-secondary-dark text-secondary-dark rounded-lg px-3 py-0.5">
+                    {collection.owner.name}
+                </p>
             </div>
             <div>
                 <p className="text-text-light dark:text-text-dark font-bold text-xl">
                     {collection.collectionName}
                 </p>
 
-                {typeof collection.category === 'object' && 'categoryName' in collection.category &&
-                    <p className='text-text-light dark:text-text-dark '>{collection.category.categoryName}</p>
-                }
+                <p className='inline text-text-light dark:text-text-dark font-light text-lg'>{collection.category.categoryName}</p>
 
                 <p className="text-text-light dark:text-text-dark my-3 break-words">
                     {collection.description}

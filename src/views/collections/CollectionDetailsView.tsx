@@ -36,7 +36,7 @@ const CollectionDetailsView = () => {
                     backgroundImage: `linear-gradient(0deg, rgba(70, 70, 70, 0) 0%, rgba(140, 140, 140, 0.7) 100%), url(${data.image})`, backgroundPosition: '50% 50%'
                 }}
             >
-                {hasOwnership(data.owner, user) &&
+                {hasOwnership(data.owner._id, user) &&
                     <CollectionToolBar collectionId={collectionId} />
                 }
                 <div className="absolute inset-0 bg-black opacity-50 rounded-lg pointer-events-none"></div>
@@ -49,7 +49,7 @@ const CollectionDetailsView = () => {
                 </p>
             </div>
 
-            {hasOwnership(data.owner, user) &&
+            {hasOwnership(data.owner._id, user) &&
                 <>
                     <nav className="relative my-5 flex gap-3">
                         <button

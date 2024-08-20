@@ -14,7 +14,7 @@ const CreateCollectionView = () => {
     const initialValues: CollectionFormData = {
         collectionName: '',
         description: '',
-        category: '',
+        category: { _id: '', categoryName: '', }
     }
     const { register, handleSubmit, formState: { errors }, reset, } = useForm({ defaultValues: initialValues });
 

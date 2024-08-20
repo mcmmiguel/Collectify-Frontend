@@ -1,10 +1,10 @@
-import { getAllCollections } from "@/api/CollectionAPI";
-import CollectionCard from "@/components/collections/CollectionCard";
-import Fab from "@/components/collections/FAB";
-import LoadingSpinner from "@/components/LoadingSpinner";
-import { useAuth } from "@/hooks/useAuth";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
+import LoadingSpinner from "@/components/LoadingSpinner";
+import Fab from "@/components/collections/FAB";
+import { useAuth } from "@/hooks/useAuth";
+import CollectionCard from "@/components/collections/CollectionCard";
+import { getAllCollections } from "@/api/CollectionAPI";
 
 const AllCollectionsView = () => {
 

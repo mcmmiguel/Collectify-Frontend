@@ -77,11 +77,14 @@ const CollectionForm = ({ errors, register, setValue, defaultValue }: Collection
                         required: t("CreateCollection_CategoryRequired"),
                     })}
                 >
+                    <option value="" disabled>
+                        -- {t("CreateCollection_CategoryPlaceholder")} --
+                    </option>
                     {data?.map(category => <option key={category._id} value={category._id}>{category.categoryName}</option>)}
                 </Select>
 
-                {errors.description && (
-                    <ErrorMessage>{errors.description.message}</ErrorMessage>
+                {errors.category && (
+                    <ErrorMessage>{errors.category.message}</ErrorMessage>
                 )}
             </div>
 

@@ -30,6 +30,21 @@ export async function getAllCollections() {
     }
 }
 
+export async function getLargestCollections() {
+    try {
+        const url = '/public/collections/largest-collections';
+        const { data } = await api(url);
+        const response = z.array(ownerCategoryCollection).safeParse(data);
+        if (response.success) {
+            return response.data;
+        }
+    } catch (error) {
+        if (isAxiosError(error) && error.response) {
+            throw new Error(error.response.data.error);
+        }
+    }
+}
+
 export async function getFullCollection(id: Collection['_id']) {
     try {
         const url = `/public/collections/${id}`;

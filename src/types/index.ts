@@ -93,7 +93,28 @@ export const itemSchema = z.object({
     updatedAt: z.string(),
 });
 
+export const itemWithCollectionSchema = itemSchema.pick({
+    _id: true,
+    itemName: true,
+    description: true,
+    image: true,
+    comments: true,
+    likes: true,
+    createdAt: true,
+    updatedAt: true,
+}).extend({
+    itemCollection: z.object({
+        _id: z.string(),
+        collectionName: z.string(),
+        owner: z.object({
+            _id: z.string(),
+            name: z.string(),
+        })
+    }),
+})
+
 export type Item = z.infer<typeof itemSchema>;
+export type ItemWithCollection = z.infer<typeof itemWithCollectionSchema>;
 export type ItemFormData = Pick<Item, 'itemName' | 'description' | 'image'>;
 
 

@@ -88,3 +88,11 @@
         transform: scale3D(0, 0, 1);
     }
 }
+
+@media (max-width: 640px) {
+    .swiper-slide-collection {
+        /* Center slide vertically */
+        display: flex;
+        justify-content: center;
+    }
+}

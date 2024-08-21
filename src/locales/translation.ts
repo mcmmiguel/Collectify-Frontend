@@ -47,6 +47,15 @@ const resources = {
             "NavMenu_AdminPanel": "Admin Panel",
             "NavMenu_Logout": "Log Out",
 
+            // HOME
+            "Home_Title1": "Explore the stories behind ",
+            "Home_Title2": "each collection.",
+            "LatestItems_Title1": "Latest",
+            "LatestItems_Title2": "Items",
+            "PopularItems_Title1": "Most popular",
+            "PopularItems_Title2": "Items",
+            "LargestCollections_Title1": "Largest",
+            "LargestCollections_Title2": "Collections",
 
             // COLLECTIONS VIEW
             "AllCollectionsView_TitleText_1st": "Get inspired by the ",
@@ -186,6 +195,17 @@ const resources = {
             "NavMenu_Profile": "Perfil",
             "NavMenu_AdminPanel": "Panel de administración",
             "NavMenu_Logout": "Cerrar sesión",
+
+            // HOME
+            "Home_Title1": "Explora las historias detrás de ",
+            "Home_Title2": "cada colección.",
+            "LatestItems_Title1": "Últimos",
+            "LatestItems_Title2": "Ítems",
+            "PopularItems_Title2": "populares",
+            "PopularItems_Title1": "Ítems",
+            "LargestCollections_Title2": "más grandes",
+            "LargestCollections_Title1": "Colecciones",
+
 
             // COLLECTIONS VIEW
             "AllCollectionsView_TitleText_1st": "Inspírate con las colecciones de ",

@@ -9,7 +9,7 @@ const Fab = () => {
 
     return (
         <button
-            className="bg-secondary-dark hover:bg-secondary-dark-dark py-2 px-3 rounded-lg fixed bottom-10 right-10 "
+            className="bg-secondary-dark hover:bg-secondary-dark-dark py-2 px-3 rounded-lg fixed bottom-10 right-10 z-50"
             onClick={() => navigate('/collections/create')}
         >
             <div className='flex justify-between items-center gap-2'>

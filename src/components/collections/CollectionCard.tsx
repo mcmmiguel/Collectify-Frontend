@@ -26,9 +26,9 @@ const CollectionCard = ({ collection }: CollectionCardProps) => {
                 </p>
             </div>
             <div>
-                <p className="text-text-light dark:text-text-dark font-bold text-xl">
+                <Link to={`/collections/${collection._id}`} className="block text-text-light dark:text-text-dark font-bold text-xl">
                     {collection.collectionName}
-                </p>
+                </Link>
 
                 <p className='inline text-text-light dark:text-text-dark font-light text-lg'>{collection.category.categoryName}</p>
 

@@ -1,24 +1,25 @@
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import AppLayout from "./AppLayout";
 import { useAuth } from "@/hooks/useAuth";
+import { useTranslation } from "react-i18next";
 
 const AdminLayout = () => {
-    const { user, isLoading } = useAuth();
+    const { user, isLoading, setToastError } = useAuth();
+    const { t } = useTranslation();
     const navigate = useNavigate();
 
-    useEffect(() => {
-        if (!isLoading && !user?.isAdmin) {
-            toast.error('Forbidden. You dont have admin access.');
+    useLayoutEffect(() => {
+        if (user && !user.isAdmin) {
+            setToastError(t("Error_AdminAccess"));
             navigate('/', { replace: true });
         }
-    }, [isLoading, user, navigate]);
+    }, [user, navigate, setToastError]);
 
     if (isLoading) return <LoadingSpinner />;
 
-    return user && <AppLayout><Outlet /></AppLayout>;
+    if (user?.isAdmin) return <AppLayout> <Outlet /> </AppLayout>;
 }
 
 export default AdminLayout;

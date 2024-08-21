@@ -33,7 +33,7 @@ const NavMenu = () => {
                     <div className="w-full lg:w-56 shrink rounded-xl bg-background-light dark:bg-border-dark p-4 text-sm font-semibold leading-6 text-text-light dark:text-text-dark shadow-lg ring-1 ring-gray-900/5">
                         <p className='text-center'>{t("NavMenu_Greeting", { name: user?.name })}</p>
                         <Link
-                            to='/profile'
+                            to={'/profile'}
                             className='block p-2 dark:text-text-dark hover:text-hover-link-light hover:dark:text-hover-link-dark'
                         >{t("NavMenu_Profile")}</Link>
                         <Link

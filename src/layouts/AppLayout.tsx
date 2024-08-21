@@ -1,13 +1,22 @@
 import Logo from "@/components/Logo";
 import NavMenu from "@/components/NavMenu";
-import { ReactNode } from "react";
+import { useAuth } from "@/hooks/useAuth";
+import { ReactNode, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 const AppLayout = ({ children }: { children: ReactNode }) => {
 
     const { t } = useTranslation();
+    const { toastError, setToastError } = useAuth();
+
+    useEffect(() => {
+        if (toastError) {
+            toast.error(toastError);
+            setToastError('');
+        }
+    }, [toastError, setToastError]);
 
     return (
         <>

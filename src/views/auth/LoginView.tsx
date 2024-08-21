@@ -20,7 +20,7 @@ const LoginView = () => {
 
     const { login } = useAuth();
 
-    const { mutate } = useMutation({
+    const { mutate, isPending } = useMutation({
         mutationFn: loginAPI,
         onError: (error) => {
             toast.error(error.message);
@@ -83,6 +83,7 @@ const LoginView = () => {
                 <input
                     type="submit"
                     value={t("Login_SignIn")}
+                    disabled={isPending}
                     className="bg-primary-light hover:bg-primary-dark w-full p-3  text-white dark:text-text-dark font-black text-xl cursor-pointer rounded-lg"
                 />
             </form>

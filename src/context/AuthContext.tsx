@@ -1,4 +1,4 @@
-import { createContext, ReactNode } from "react";
+import { createContext, Dispatch, ReactNode, SetStateAction, useEffect, useState } from "react";
 import { AuthUser } from "../types";
 import { getUser } from "@/api/AuthAPI";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
@@ -14,6 +14,8 @@ export type AuthContextProps = {
     error: Error | null;
     isError?: boolean;
     isLoading?: boolean;
+    toastError: string | null;
+    setToastError: Dispatch<SetStateAction<string>>;
     login: () => void;
     logout: () => void;
 }
@@ -22,8 +24,12 @@ export const AuthContext = createContext<AuthContextProps>({} as AuthContextProp
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
 
+    const errorMessages = ['Unauthorized.', 'No autorizado.'];
+
     const queryClient = useQueryClient();
     const navigate = useNavigate();
+
+    const [toastError, setToastError] = useState('');
 
     const { data, isError, isLoading, error, refetch } = useQuery({
         queryKey: ['user'],
@@ -32,9 +38,17 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         refetchOnWindowFocus: false,
     });
 
+    useEffect(() => {
+        if (isError) {
+            navigate('/auth/login', { replace: true });
+            queryClient.invalidateQueries({ queryKey: ['user'] });
+        }
+    }, [isError, error, navigate, queryClient]);
+
+
     const login = async () => {
         const { data: userData, error: refetchError } = await refetch(); //to get user data if i was not authenticated // Avoid the issue logout - index - login - index(public) Must be private;
-        if (refetchError && refetchError.message !== 'Unauthorized') return toast.error(refetchError.message);
+        if (refetchError && !errorMessages.includes(refetchError.message)) return toast.error(refetchError.message);
         if (userData) return navigate('/');
     }
 
@@ -50,6 +64,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
             error,
             isError,
             isLoading,
+            toastError,
+            setToastError,
             login,
             logout
         }}>

@@ -126,6 +126,8 @@ const resources = {
             // DIALOGS
             "DeleteCollection_Title": "Delete collection?",
             "DeleteCollection_Message": "Are you sure you want to delete this collection? All of your data will be permanently removed.",
+            "ActionApplied": "Action applied successfully.",
+            "Error_AdminAccess": "Forbidden.You don't have admin access.",
 
             "BlockUser_Title": "Block",
             "UnlockUser_Title": "Unlock",
@@ -263,6 +265,8 @@ const resources = {
             // DIÁLOGOS
             "DeleteCollection_Title": "¿Eliminar colección?",
             "DeleteCollection_Message": "¿Estás seguro de que deseas eliminar esta colección? Todos tus datos se eliminarán permanentemente.",
+            "ActionApplied": "Acción aplicada con éxito.",
+            "Error_AdminAccess": "No tienes permisos de administrador.",
 
             "BlockUser_Title": "Bloquear",
             "UnlockUser_Title": "Desbloquear",

@@ -1,4 +1,5 @@
 import { Description, Dialog, DialogPanel, DialogTitle } from '@headlessui/react';
+import { useTranslation } from 'react-i18next';
 
 type ConfirmationDialogProps = {
     title: string;
@@ -9,6 +10,9 @@ type ConfirmationDialogProps = {
 }
 
 const ConfirmationDialog = ({ title, message, isOpen, onClose, onConfirm }: ConfirmationDialogProps) => {
+
+    const { t } = useTranslation();
+
     return (
         <Dialog open={isOpen} onClose={onClose} className="relative z-50">
             <div className="fixed inset-0 flex items-center justify-center p-4">
@@ -21,7 +25,7 @@ const ConfirmationDialog = ({ title, message, isOpen, onClose, onConfirm }: Conf
                             onClick={onClose}
                             className="px-4 py-2 bg-success-light dark:bg-success-dark text-white rounded-lg"
                         >
-                            Cancel
+                            {t("CancelButton")}
                         </button>
                         <button
                             type="button"
@@ -31,7 +35,7 @@ const ConfirmationDialog = ({ title, message, isOpen, onClose, onConfirm }: Conf
                             }}
                             className="px-4 py-2 bg-error-light dark:bg-error-dark text-white rounded-lg"
                         >
-                            Confirm
+                            {t("ConfirmButton")}
                         </button>
                     </div>
                 </DialogPanel>

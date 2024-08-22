@@ -33,6 +33,11 @@ const ItemDetailsView = () => {
 
     const { user } = useAuth();
 
+    useEffect(() => {
+        const liked = likes.some(like => like.author._id === user?._id);
+        setIsLiked(liked);
+    }, [likes, user?._id]);
+
     const { data, isLoading, isError } = useQuery({
         queryKey: ['item', itemId],
         queryFn: () => getItemById({ collectionId, itemId }),

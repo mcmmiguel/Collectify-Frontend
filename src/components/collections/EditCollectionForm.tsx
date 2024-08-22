@@ -3,13 +3,13 @@ import { useForm } from "react-hook-form";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import CollectionForm from "./CollectionForm";
 import { updateCollection, uploadImageToCloudinary } from "@/api/CollectionAPI";
-import { Collection, CollectionFormData } from "@/types/index";
+import { Collection, CollectionFormData, FullCollection } from "@/types/index";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import BackButton from "../BackButton";
 
 type EditCollectionFormProps = {
-    data: CollectionFormData;
+    data: FullCollection;
     collectionId: Collection['_id'];
 }
 
@@ -21,10 +21,11 @@ const EditCollectionForm = ({ data, collectionId }: EditCollectionFormProps) => 
         collectionName: data.collectionName,
         description: data.description,
         image: '',
-        category: data.category,
+        category: data.category._id,
+        customFields: [],
     }
-    const { register, handleSubmit, formState: { errors }, setValue } = useForm({ defaultValues: initialValues });
 
+    const { register, handleSubmit, formState: { errors }, setValue } = useForm({ defaultValues: initialValues });
     const navigate = useNavigate();
     const queryClient = useQueryClient();
 
@@ -86,7 +87,7 @@ const EditCollectionForm = ({ data, collectionId }: EditCollectionFormProps) => 
                     noValidate
                 >
 
-                    <CollectionForm register={register} errors={errors} setValue={setValue} defaultValue={initialValues.category} />
+                    <CollectionForm register={register} errors={errors} setValue={setValue} defaultCategoryValue={initialValues.category} editMode />
 
                     {data.image &&
                         <div>

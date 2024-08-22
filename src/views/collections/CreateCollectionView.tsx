@@ -14,9 +14,10 @@ const CreateCollectionView = () => {
     const initialValues: CollectionFormData = {
         collectionName: '',
         description: '',
-        category: { _id: '', categoryName: '', }
+        category: '',
+        customFields: [],
     }
-    const { register, handleSubmit, formState: { errors }, reset, } = useForm({ defaultValues: initialValues });
+    const { register, handleSubmit, formState: { errors }, reset, control } = useForm({ defaultValues: initialValues });
 
     const createCollectionMutation = useMutation({
         mutationFn: createCollection,
@@ -37,6 +38,7 @@ const CreateCollectionView = () => {
     });
 
     const handleForm = async (formData: CollectionFormData) => {
+        console.log(formData);
         let imageUrl = '';
 
         if (formData.image && formData.image[0]) {
@@ -65,7 +67,7 @@ const CreateCollectionView = () => {
                     noValidate
                 >
 
-                    <CollectionForm register={register} errors={errors} />
+                    <CollectionForm register={register} errors={errors} control={control} editMode={false} />
 
                     <input
                         type="submit"

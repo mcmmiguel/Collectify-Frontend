@@ -3,7 +3,14 @@ import { useQuery } from "@tanstack/react-query";
 import { Navigate, useLocation, useParams } from "react-router-dom"
 import EditItemModal from "./EditItemModal";
 
-const EditItemData = () => {
+type EditItemDataProps = {
+    collectionCustomFields: {
+        fieldName: string;
+        fieldType: string;
+    }[] | undefined
+}
+
+const EditItemData = ({ collectionCustomFields }: EditItemDataProps) => {
 
     const params = useParams();
     const collectionId = params.collectionId!;
@@ -21,6 +28,6 @@ const EditItemData = () => {
 
     if (isError) return <Navigate to={'/404'} />
 
-    if (data) return <EditItemModal data={data} itemId={itemId} />;
+    if (data) return <EditItemModal collectionCustomFields={collectionCustomFields} data={data} itemId={itemId} />;
 }
 export default EditItemData

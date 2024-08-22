@@ -12,6 +12,7 @@ import { useAuth } from "@/hooks/useAuth";
 import defaultImage from '/image-default.jpg';
 import { CommentFormData, Comment, Like } from "@/types/index";
 import { useTranslation } from "react-i18next";
+import convertDataType from "@/utils/convertDataType";
 
 const ItemDetailsView = () => {
 
@@ -118,7 +119,7 @@ const ItemDetailsView = () => {
                 }
             </div>
 
-            <div className="grid grid-cols-3 gap-4 mb-10">
+            <div className="flex flex-col sm:grid grid-cols-3 gap-4 mb-10">
                 <div className="col-span-1 rounded-lg max-h-96 relative">
                     <img
                         className="w-full h-full object-contain rounded-lg  object-top "
@@ -134,6 +135,13 @@ const ItemDetailsView = () => {
                     <p className="text-2xl font-light text-text-light dark:text-text-dark mt-5">
                         {data.description}
                     </p>
+                    <div className="flex flex-col sm:flex-row sm:gap-5">
+                        {data.customFields && (
+                            data.customFields.map(field => <p key={field.fieldName} className="text-lg font-light text-text-light dark:text-text-dark mt-5">
+                                {field.fieldName}: {convertDataType(field.value)}
+                            </p>)
+                        )}
+                    </div>
                 </div>
             </div>
 
@@ -150,7 +158,7 @@ const ItemDetailsView = () => {
                             id="comment"
                             {...register('comment')}
                             placeholder={t("ItemView_CommentAs", { name: user.name })}
-                            className="w-full h-full focus:outline-none bg-transparent"
+                            className="w-full h-full focus:outline-none bg-transparent text-text-light dark:text-text-dark"
                         />
 
                         <button type="submit" disabled={commentField.length === 0}>

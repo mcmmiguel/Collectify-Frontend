@@ -75,6 +75,11 @@ export const likeSchema = z.object({
 
 export type Like = z.infer<typeof likeSchema>;
 
+const customFieldSchema = z.object({
+    fieldName: z.string(),
+    value: z.union([z.string(), z.number(), z.boolean(), z.date()]),
+});
+
 
 // ITEMS
 export const itemSchema = z.object({
@@ -91,6 +96,7 @@ export const itemSchema = z.object({
     ),
     createdAt: z.string(),
     updatedAt: z.string(),
+    customFields: z.optional(z.array(customFieldSchema)),
 });
 
 export const itemWithCollectionSchema = itemSchema.pick({
@@ -115,7 +121,12 @@ export const itemWithCollectionSchema = itemSchema.pick({
 
 export type Item = z.infer<typeof itemSchema>;
 export type ItemWithCollection = z.infer<typeof itemWithCollectionSchema>;
-export type ItemFormData = Pick<Item, 'itemName' | 'description' | 'image'>;
+export type ItemFormData = Pick<Item, 'itemName' | 'description' | 'image'> & {
+    customFields?: {
+        fieldName: string;
+        value: string | number | boolean | Date | undefined;
+    }[];
+};
 
 
 // CATEGORIES
@@ -123,6 +134,12 @@ export const categorySchema = z.object({
     _id: z.string(),
     categoryName: z.string()
 });
+
+export const categoryIdSchema = categorySchema.pick({
+    _id: true,
+})
+
+export type Category = z.infer<typeof categorySchema>;
 
 
 // COLLECTIONS
@@ -166,12 +183,27 @@ export const fullCollectionSchema = collectionSchema.pick({ //Collection with po
         name: true,
     }),
     category: categorySchema,
+    customFields: z.optional(z.array(
+        z.object({ fieldName: z.string(), fieldType: z.string() }),
+    )),
 });
+
+export type CustomField = {
+    fieldName: string;
+    fieldType: 'integer' | 'string' | 'boolean' | 'date' | '';
+};
+
+export type CustomItemField = {
+    fieldName: string;
+    value: string | number | boolean | Date | '';
+};
 
 export type Collection = z.infer<typeof collectionSchema>;
 export type OwnerCategoryCollection = z.infer<typeof ownerCategoryCollection>;
 export type FullCollection = z.infer<typeof fullCollectionSchema>;
-export type CollectionFormData = Pick<FullCollection, 'collectionName' | 'description' | 'image' | 'category'>;
+export type CollectionFormData = Pick<Collection, 'collectionName' | 'description' | 'image' | 'category'> & {
+    customFields?: CustomField[];
+};
 
 
 // CLOUDINARY IMAGES

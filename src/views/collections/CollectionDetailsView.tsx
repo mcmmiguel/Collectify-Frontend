@@ -69,8 +69,8 @@ const CollectionDetailsView = () => {
                 </ul>
             }
 
-            <AddItemModal />
-            <EditItemData />
+            <AddItemModal collectionCustomFields={data.customFields} />
+            <EditItemData collectionCustomFields={data.customFields} />
         </>
     )
 }

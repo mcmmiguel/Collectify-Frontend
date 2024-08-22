@@ -1,19 +1,23 @@
-import { FieldErrors, UseFormRegister, UseFormSetValue } from "react-hook-form";
+import { Control, FieldErrors, UseFormRegister, UseFormSetValue } from "react-hook-form";
 import { ErrorMessage } from "../ErrorMessage";
 import { CollectionFormData } from '@/types/index';
 import { useTranslation } from "react-i18next";
 import { Select } from "@headlessui/react";
 import { useQuery } from "@tanstack/react-query";
 import { getCategories } from "@/api/CategoryAPI";
+import CustomFieldsForm from "./CustomFieldsForm";
+import { useEffect } from "react";
 
 type CollectionFormProps = {
     errors: FieldErrors<CollectionFormData>;
     register: UseFormRegister<CollectionFormData>;
+    control?: Control<CollectionFormData>;
     setValue?: UseFormSetValue<CollectionFormData>;
-    defaultValue?: CollectionFormData['category'];
+    defaultCategoryValue?: CollectionFormData['category'];
+    editMode: boolean;
 }
 
-const CollectionForm = ({ errors, register, setValue, defaultValue }: CollectionFormProps) => {
+const CollectionForm = ({ errors, register, setValue, defaultCategoryValue, control, editMode }: CollectionFormProps) => {
 
     const { t } = useTranslation();
 
@@ -22,9 +26,11 @@ const CollectionForm = ({ errors, register, setValue, defaultValue }: Collection
         queryFn: getCategories,
     });
 
-    if (isSuccess && setValue) {
-        setValue('category', (defaultValue) ? defaultValue : ''); //Asign category after category list fetching
-    }
+    useEffect(() => {
+        if (isSuccess && setValue && editMode) {
+            setValue('category', defaultCategoryValue || '');
+        }
+    }, [isSuccess, setValue, editMode, defaultCategoryValue]);
 
     return (
         <>
@@ -77,9 +83,7 @@ const CollectionForm = ({ errors, register, setValue, defaultValue }: Collection
                         required: t("CreateCollection_CategoryRequired"),
                     })}
                 >
-                    <option value="" disabled>
-                        -- {t("CreateCollection_CategoryPlaceholder")} --
-                    </option>
+                    <option value={''}>-- {t("CreateCollection_CategoryPlaceholder")} --</option>
                     {data?.map(category => <option key={category._id} value={category._id}>{category.categoryName}</option>)}
                 </Select>
 
@@ -87,6 +91,10 @@ const CollectionForm = ({ errors, register, setValue, defaultValue }: Collection
                     <ErrorMessage>{errors.category.message}</ErrorMessage>
                 )}
             </div>
+
+            {!editMode &&
+                <CustomFieldsForm register={register} control={control} />
+            }
 
             <div className="mb-5 space-y-3">
                 <label htmlFor="image" className="text-sm uppercase font-bold text-text-light dark:text-text-dark block">

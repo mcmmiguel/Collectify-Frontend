@@ -12,9 +12,13 @@ import { useTranslation } from 'react-i18next';
 type EditItemModalProps = {
     data: Item;
     itemId: Item['_id'];
+    collectionCustomFields: {
+        fieldName: string;
+        fieldType: string;
+    }[] | undefined
 }
 
-export default function EditItemModal({ data, itemId }: EditItemModalProps) {
+export default function EditItemModal({ data, itemId, collectionCustomFields }: EditItemModalProps) {
 
     const navigate = useNavigate();
     const { t } = useTranslation();
@@ -22,13 +26,24 @@ export default function EditItemModal({ data, itemId }: EditItemModalProps) {
     const params = useParams();
     const collectionId = params.collectionId!;
 
-    const { register, formState: { errors }, handleSubmit, reset } = useForm<ItemFormData>({
-        defaultValues: {
-            itemName: data.itemName,
-            description: data.description,
-            image: data.image,
-        }
-    });
+    const transformedCustomFields = collectionCustomFields?.map(field => ({
+        fieldName: field.fieldName,
+        fieldType: field.fieldType as 'integer' | 'string' | 'boolean' | 'date' | '',
+    }));
+
+    const customFieldsInitialValues = collectionCustomFields?.map((field, index) => ({
+        fieldName: field.fieldName,
+        value: (data.customFields) && data.customFields[index].value,
+    }));
+
+    const initialValues: ItemFormData = {
+        itemName: data.itemName,
+        description: data.description,
+        image: data.image,
+        customFields: customFieldsInitialValues || [],
+    }
+
+    const { register, formState: { errors }, handleSubmit, reset } = useForm<ItemFormData>({ defaultValues: initialValues });
 
     const queryClient = useQueryClient();
 
@@ -95,7 +110,7 @@ export default function EditItemModal({ data, itemId }: EditItemModalProps) {
                                     noValidate
                                 >
 
-                                    <ItemForm register={register} errors={errors} />
+                                    <ItemForm register={register} errors={errors} collectionCustomFields={transformedCustomFields} />
 
                                     <input
                                         type='submit'

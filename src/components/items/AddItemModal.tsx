@@ -10,7 +10,14 @@ import { createItem } from '@/api/ItemAPI';
 import { ItemFormData } from '@/types/index';
 import { useTranslation } from 'react-i18next';
 
-const AddItemModal = () => {
+type AddItemModalProps = {
+    collectionCustomFields: {
+        fieldName: string;
+        fieldType: string;
+    }[] | undefined
+}
+
+const AddItemModal = ({ collectionCustomFields }: AddItemModalProps) => {
 
     const { t } = useTranslation();
     const location = useLocation();
@@ -23,10 +30,21 @@ const AddItemModal = () => {
     const params = useParams();
     const collectionId = params.collectionId!;
 
+    const transformedCustomFields = collectionCustomFields?.map(field => ({
+        fieldName: field.fieldName,
+        fieldType: field.fieldType as 'integer' | 'string' | 'boolean' | 'date' | '',
+    }));
+
+    const customFieldsInitialValues = collectionCustomFields?.map(field => ({
+        fieldName: field.fieldName,
+        value: '',
+    }));
+
     const initalValues: ItemFormData = {
         itemName: '',
         description: '',
         image: '',
+        customFields: customFieldsInitialValues || [],
     }
 
     const { register, formState: { errors }, handleSubmit, reset } = useForm({ defaultValues: initalValues });
@@ -76,7 +94,7 @@ const AddItemModal = () => {
     return (
         <>
             <Transition appear show={show} as={Fragment}>
-                <Dialog as="div" className="relative z-10" onClose={() => navigate(location.pathname, { replace: true })}>
+                <Dialog as="div" className="relative z-50" onClose={() => navigate(location.pathname, { replace: true })}>
                     <TransitionChild
                         as={Fragment}
                         enter="ease-out duration-300"
@@ -118,7 +136,7 @@ const AddItemModal = () => {
                                         onSubmit={handleSubmit(handleCreateItem)}
                                     >
 
-                                        <ItemForm register={register} errors={errors} />
+                                        <ItemForm register={register} errors={errors} collectionCustomFields={transformedCustomFields} />
 
                                         <input
                                             type='submit'

@@ -50,6 +50,8 @@ const resources = {
             // HOME
             "Home_Title1": "Explore the stories behind ",
             "Home_Title2": "each collection.",
+            "Search_Placeholder": "Search Items by Name or Description",
+            "Search_NoResults": "No results",
             "Button_ViewAllCollections": "View all the collections",
             "LatestItems_Title1": "Latest",
             "LatestItems_Title2": "Items",
@@ -112,7 +114,7 @@ const resources = {
 
             // ITEM VIEW
             "ItemView_AddAComment": "Add a comment",
-            "ItemView_CommentAs": "You are comment as {{name}}",
+            "ItemView_CommentAs": "You are commenting as {{name}}",
             "ItemView_NoComments": "No comments yet...",
 
             // PROFILE
@@ -137,7 +139,7 @@ const resources = {
             "DeleteCollection_Title": "Delete collection?",
             "DeleteCollection_Message": "Are you sure you want to delete this collection? All of your data will be permanently removed.",
             "ActionApplied": "Action applied successfully.",
-            "Error_AdminAccess": "Forbidden.You don't have admin access.",
+            "Error_AdminAccess": "Forbidden. You don't have admin access.",
             "Error_Forbidden": "Forbidden.",
 
             "BlockUser_Title": "Block",
@@ -151,7 +153,7 @@ const resources = {
             "ConfirmButton": "Confirm",
 
             // FOOTER
-            "Footer": "All rights reserved. "
+            "Footer": "All rights reserved."
         }
     },
     es: {
@@ -201,6 +203,8 @@ const resources = {
             // HOME
             "Home_Title1": "Explora las historias detrás de ",
             "Home_Title2": "cada colección.",
+            "Search_Placeholder": "Busca Ítems por Nombre o Descripción",
+            "Search_NoResults": "Sin resultados",
             "Button_ViewAllCollections": "Ver todas las colecciones",
             "LatestItems_Title1": "Últimos",
             "LatestItems_Title2": "Ítems",
@@ -209,15 +213,17 @@ const resources = {
             "LargestCollections_Title2": "más grandes",
             "LargestCollections_Title1": "Colecciones",
 
-
             // COLLECTIONS VIEW
             "AllCollectionsView_TitleText_1st": "Inspírate con las colecciones de ",
             "AllCollectionsView_TitleText_2st": "la comunidad.",
             "AllCollectionsView_CreateFAB": "Nueva colección",
 
+            // COLLECTION CARD
+            "CollectionCard_Explore": "Explorar",
+
             // CREATE COLLECTION
             "CreateCollection_Title": "Crear colección",
-            "CreateCollection_Subtitle": "Completa el siguiente formulario y crea una colección.",
+            "CreateCollection_Subtitle": "Completa el formulario y crea una colección",
             "CreateCollection_Name": "Nombre de la colección",
             "CreateCollection_NamePlaceholder": "Juegos de Xbox",
             "CreateCollection_NameRequired": "El nombre de la colección es obligatorio",
@@ -226,17 +232,14 @@ const resources = {
             "CreateCollection_DescriptionRequired": "La descripción es obligatoria",
             "CreateCollection_Category": "Categoría",
             "CreateCollection_CategoryRequired": "La categoría es obligatoria",
-            "CreateCollection_CategoryPlaceholder": "Seleciona una categoría",
+            "CreateCollection_CategoryPlaceholder": "Selecciona una categoría",
             "CreateCollection_Image": "Subir una imagen",
             "CreateCollection_ImageButton": "---",
             "CreateCollection_CreateButton": "Crear",
 
-            // COLLECTION CARD
-            "CollectionCard_Explore": "Explorar",
-
             // EDIT COLLECTION
             "EditCollection_Title": "Editar colección",
-            "EditCollection_Subtitle": "Completa el formulario y edita esta colección.",
+            "EditCollection_Subtitle": "Completa el formulario y edita esta colección",
             "EditCollection_EditButton": "Actualizar cambios",
 
             // ITEM CARD
@@ -245,20 +248,20 @@ const resources = {
             "ItemCard_EditOption": "Editar",
             "ItemCard_DeleteOption": "Eliminar",
 
-            // MODAL CREAR ITEM
-            "CreateItem_Title": "Crear Ítem",
+            // CREATE ITEM MODAL
+            "CreateItem_Title": "Crear ítem",
             "CreateItem_Subtitle1": "Completa el formulario y crea",
             "CreateItem_Subtitle2": "un ítem",
-            "CreateItem_Button": "Guardar Ítem",
-            "Item_Name": "Nombre del Ítem",
+            "CreateItem_Button": "Guardar ítem",
+            "Item_Name": "Nombre del ítem",
             "Item_NameRequired": "El nombre del ítem es obligatorio",
             "Item_Description": "Descripción",
             "Item_DescriptionPlaceholder": "Describe tu ítem",
             "Item_Image": "Subir una imagen",
 
-            // MODAL EDITAR ITEM
-            "EditItem_Title": "Editar Ítem",
-            "EditItem_Subtitle1": "Haz cambios a un ítem en ",
+            // EDIT ITEM MODAL
+            "EditItem_Title": "Editar ítem",
+            "EditItem_Subtitle1": "Realiza cambios a un ítem en ",
             "EditItem_Subtitle2": "este formulario",
             "EditItem_Button": "Guardar cambios",
 
@@ -267,16 +270,16 @@ const resources = {
             "ItemView_CommentAs": "Estás comentando como {{name}}",
             "ItemView_NoComments": "Aún no hay comentarios...",
 
-            // PERFIL
+            // PROFILE
             "Profile_Title1": "Tus colecciones en ",
             "Profile_Title2": "un solo lugar.",
-            "Profile_NoCollections": "Todavía no tienes ninguna colección",
+            "Profile_NoCollections": "Aún no tienes colecciones...",
 
-            // PANEL DE ADMINISTRADOR
-            "AdminPanel_Title1": "Gestiona todos ",
+            // ADMIN PANEL
+            "AdminPanel_Title1": "Administra todos ",
             "AdminPanel_Title2": "tus usuarios",
             "AdminPanel_TableName": "Nombre",
-            "AdminPanel_TableEmail": "Correo Electrónico",
+            "AdminPanel_TableEmail": "Correo electrónico",
             "AdminPanel_TableTime": "Tiempo desde el registro",
             "AdminPanel_TableAccess": "Acceso",
             "AdminPanel_TableStatus": "Estado",
@@ -285,28 +288,29 @@ const resources = {
             "AdminPanel_Active": "Activo",
             "AdminPanel_Blocked": "Bloqueado",
 
-            // DIÁLOGOS
+            // DIALOGS
             "DeleteCollection_Title": "¿Eliminar colección?",
-            "DeleteCollection_Message": "¿Estás seguro de que deseas eliminar esta colección? Todos tus datos se eliminarán permanentemente.",
+            "DeleteCollection_Message": "¿Estás seguro de que deseas eliminar esta colección? Todos tus datos se eliminarán de forma permanente.",
             "ActionApplied": "Acción aplicada con éxito.",
-            "Error_AdminAccess": "No tienes permisos de administrador.",
+            "Error_AdminAccess": "Prohibido. No tienes acceso de administrador.",
             "Error_Forbidden": "Prohibido.",
 
             "BlockUser_Title": "Bloquear",
             "UnlockUser_Title": "Desbloquear",
-            "AssignAsAdmin_Title": "Asignar como Administrador",
-            "AssignAsUser_Title": "Asignar como Usuario",
+            "AssignAsAdmin_Title": "Asignar como administrador",
+            "AssignAsUser_Title": "Asignar como usuario",
             "DeleteUser_Title": "Eliminar",
-            "User_Message": "¿Estás seguro de que deseas {{actionName}} a {{users}} usuario(s)?",
+            "User_Message": "¿Estás seguro de que deseas {{actionName}} {{users}} usuario(s)?",
 
             "CancelButton": "Cancelar",
             "ConfirmButton": "Confirmar",
 
             // FOOTER
-            "Footer": "Todos los derechos reservados. "
+            "Footer": "Todos los derechos reservados."
         }
     }
 };
+
 
 i18n
     .use(LanguageDetector)

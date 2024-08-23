@@ -41,7 +41,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     useEffect(() => {
         if (isError) {
             navigate('/auth/login', { replace: true });
-            queryClient.invalidateQueries({ queryKey: ['user'] });
         }
     }, [isError, error, navigate, queryClient]);
 

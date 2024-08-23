@@ -193,7 +193,7 @@ export const fullCollectionSchema = collectionSchema.pick({ //Collection with po
 
 export type CustomField = {
     fieldName: string;
-    fieldType: 'integer' | 'string' | 'boolean' | 'date' | '';
+    fieldType: 'number' | 'string' | 'boolean' | 'date' | '';
 };
 
 export type CustomItemField = {

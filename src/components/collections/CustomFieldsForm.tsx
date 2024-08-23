@@ -37,7 +37,7 @@ const CustomFieldsForm = ({ register, control }: CustomFieldsProps) => {
                                     className="w-1/3 p-2 border border-gray-200 rounded-lg"
                                 >
                                     <option value="" disabled>Select Type</option>
-                                    <option value="integer">Number</option>
+                                    <option value="number">Number</option>
                                     <option value="string">Text</option>
                                     <option value="boolean">Check</option>
                                     <option value="date">Date</option>

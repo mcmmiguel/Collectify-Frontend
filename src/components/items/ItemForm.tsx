@@ -10,7 +10,7 @@ type ItemFormProps = {
 }
 
 const customFieldInputs: Record<CustomField['fieldType'], string> = {
-    'integer': 'number',
+    'number': 'number',
     'string': 'text',
     'boolean': 'checkbox',
     'date': 'date',

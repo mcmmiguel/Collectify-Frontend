@@ -32,7 +32,7 @@ const AddItemModal = ({ collectionCustomFields }: AddItemModalProps) => {
 
     const transformedCustomFields = collectionCustomFields?.map(field => ({
         fieldName: field.fieldName,
-        fieldType: field.fieldType as 'integer' | 'string' | 'boolean' | 'date' | '',
+        fieldType: field.fieldType as 'number' | 'string' | 'boolean' | 'date' | '',
     }));
 
     const customFieldsInitialValues = collectionCustomFields?.map(field => ({

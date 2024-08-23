@@ -85,6 +85,7 @@ const ItemDetailsView = () => {
             if (data.itemId === itemId) {
                 setComments(data.comments);
             }
+            console.log(comments);
         });
 
         socket.on("comment", (newComment: Comment) => {
@@ -99,7 +100,7 @@ const ItemDetailsView = () => {
             socket.off("loadLikes");
             socket.off("likeDeleted");
         };
-    }, [itemId]);
+    }, [itemId, comments]);
 
     if (isLoading) return <LoadingSpinner />;
     if (isError) return <Navigate to={`/collections/${collectionId}`} />

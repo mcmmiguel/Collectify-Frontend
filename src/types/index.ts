@@ -54,7 +54,10 @@ export type User = z.infer<typeof userSchema>;
 // COMMENTS
 export const commentSchema = z.object({
     item: z.string(),
-    author: z.string(),
+    author: z.object({
+        _id: z.string(),
+        name: z.string(),
+    }),
     comment: z.string(),
     createdAt: z.string(),
     updatedAt: z.string(),

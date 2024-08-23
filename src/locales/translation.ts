@@ -50,6 +50,7 @@ const resources = {
             // HOME
             "Home_Title1": "Explore the stories behind ",
             "Home_Title2": "each collection.",
+            "Button_ViewAllCollections": "View all the collections",
             "LatestItems_Title1": "Latest",
             "LatestItems_Title2": "Items",
             "PopularItems_Title1": "Most popular",
@@ -136,7 +137,7 @@ const resources = {
             "DeleteCollection_Title": "Delete collection?",
             "DeleteCollection_Message": "Are you sure you want to delete this collection? All of your data will be permanently removed.",
             "ActionApplied": "Action applied successfully.",
-            "Error_AdminAccess": "Forbidden.You don't have admin access.",
+            "Error_AdminAccess": "Forbidden.You don't have admin access or your account has been blocked.",
 
             "BlockUser_Title": "Block",
             "UnlockUser_Title": "Unlock",
@@ -199,6 +200,7 @@ const resources = {
             // HOME
             "Home_Title1": "Explora las historias detrás de ",
             "Home_Title2": "cada colección.",
+            "Button_ViewAllCollections": "Ver todas las colecciones",
             "LatestItems_Title1": "Últimos",
             "LatestItems_Title2": "Ítems",
             "PopularItems_Title2": "populares",

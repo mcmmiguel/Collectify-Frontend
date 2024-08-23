@@ -6,13 +6,13 @@ import AppLayout from "./AppLayout";
 
 const DynamicLayout = () => {
 
-    const { user, isLoading } = useAuth();
+    const { user, isLoading, isError } = useAuth();
 
     if (isLoading) return <LoadingSpinner />;
 
-    return user
-        ? <AppLayout><Outlet /></AppLayout>
-        : <PublicLayout><Outlet /></PublicLayout>;
+    if (isError) return <PublicLayout><Outlet /></PublicLayout>;
+
+    if (user) return <AppLayout><Outlet /></AppLayout>
 }
 
 export default DynamicLayout

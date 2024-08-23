@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import AppLayout from './AppLayout';
 
 const ProtectedLayout = () => {
-    const { user, isLoading } = useAuth();
+    const { user, isLoading, isError } = useAuth();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -13,6 +13,13 @@ const ProtectedLayout = () => {
             navigate('/auth/login', { replace: true });
         }
     }, [isLoading, user, navigate]);
+
+    useEffect(() => {
+        if (isError) {
+            navigate('/auth/login', { replace: true });
+        }
+    }, [isError, navigate])
+
 
     if (isLoading) return <LoadingSpinner />;
 

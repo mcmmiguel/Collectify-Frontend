@@ -1,4 +1,4 @@
-import { createContext, Dispatch, ReactNode, SetStateAction, useEffect, useState } from "react";
+import { createContext, Dispatch, ReactNode, SetStateAction, useState } from "react";
 import { AuthUser } from "../types";
 import { getUser } from "@/api/AuthAPI";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
@@ -37,13 +37,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         retry: 1,
         refetchOnWindowFocus: false,
     });
-
-    useEffect(() => {
-        if (isError && !window.location.pathname.startsWith('/auth/')) {
-            navigate('/auth/login', { replace: true });
-        }
-    }, [isError, error, navigate]);
-
 
     const login = async () => {
         const { data: userData, error: refetchError } = await refetch(); //to get user data if i was not authenticated // Avoid the issue logout - index - login - index(public) Must be private;

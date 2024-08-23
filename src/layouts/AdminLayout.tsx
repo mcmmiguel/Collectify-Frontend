@@ -6,16 +6,23 @@ import { useAuth } from "@/hooks/useAuth";
 import { useTranslation } from "react-i18next";
 
 const AdminLayout = () => {
-    const { user, isLoading, setToastError } = useAuth();
+    const { user, isLoading, setToastError, isError } = useAuth();
     const { t } = useTranslation();
     const navigate = useNavigate();
 
     useLayoutEffect(() => {
-        if (user && !user.isAdmin) {
+        if ((user && !user.isAdmin)) {
             setToastError(t("Error_AdminAccess"));
             navigate('/', { replace: true });
         }
     }, [user, navigate, setToastError]);
+
+    useLayoutEffect(() => {
+        if (isError) {
+            setToastError(t("Error_AdminAccess"));
+            navigate('/', { replace: true });
+        }
+    }, [user, isError, navigate, setToastError])
 
     if (isLoading) return <LoadingSpinner />;
 

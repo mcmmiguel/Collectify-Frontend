@@ -10,11 +10,14 @@ import PreviewItemCard from "@/components/items/PreviewItemCard";
 import { getLatestItems, getMostPopularItems } from "@/api/ItemAPI";
 import { getLargestCollections } from '@/api/CollectionAPI';
 import LoadingSpinner from '@/components/LoadingSpinner';
+import { useAuth } from '@/hooks/useAuth';
+import { Link } from 'react-router-dom';
 
 
 const MainView = () => {
 
     const { t } = useTranslation();
+    const { user } = useAuth();
 
     const { data: latestItems, isLoading: latestLoading } = useQuery({
         queryKey: ['latestItems'],
@@ -34,6 +37,7 @@ const MainView = () => {
     return (
         <>
             <p className='text-center w-full py-3 bg-white rounded-lg'>Busqueda</p>
+
             <h1 className="text-center text-3xl font-medium text-text-light dark:text-text-dark mt-10 mb-5">
                 {t("Home_Title1")}{''}
                 <span className="text-secondary-light font-bold">
@@ -41,6 +45,13 @@ const MainView = () => {
                 </span>
             </h1>
 
+            <div className='w-full flex justify-center my-10'>
+                <button className='py-3 px-4 bg-secondary-light hover:bg-secondary-dark uppercase shadow-lg text-text-dark transition-colors rounded-lg font-semibold text-lg' type='button'>
+                    <Link to={'/collections'}>
+                        {t("Button_ViewAllCollections")}
+                    </Link>
+                </button>
+            </div>
 
             <div className='my-10'>
                 <h2 className="text-2xl text-text-light dark:text-text-dark my-5">
@@ -158,8 +169,9 @@ const MainView = () => {
                     </Swiper>
                 }
             </div>
-
-            <Fab />
+            {user &&
+                <Fab />
+            }
         </>
     )
 }

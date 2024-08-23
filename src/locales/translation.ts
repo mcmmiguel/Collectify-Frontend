@@ -137,7 +137,8 @@ const resources = {
             "DeleteCollection_Title": "Delete collection?",
             "DeleteCollection_Message": "Are you sure you want to delete this collection? All of your data will be permanently removed.",
             "ActionApplied": "Action applied successfully.",
-            "Error_AdminAccess": "Forbidden.You don't have admin access or your account has been blocked.",
+            "Error_AdminAccess": "Forbidden.You don't have admin access.",
+            "Error_Forbidden": "Forbidden.",
 
             "BlockUser_Title": "Block",
             "UnlockUser_Title": "Unlock",
@@ -289,6 +290,7 @@ const resources = {
             "DeleteCollection_Message": "¿Estás seguro de que deseas eliminar esta colección? Todos tus datos se eliminarán permanentemente.",
             "ActionApplied": "Acción aplicada con éxito.",
             "Error_AdminAccess": "No tienes permisos de administrador.",
+            "Error_Forbidden": "Prohibido.",
 
             "BlockUser_Title": "Bloquear",
             "UnlockUser_Title": "Desbloquear",

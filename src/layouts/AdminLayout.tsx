@@ -19,7 +19,7 @@ const AdminLayout = () => {
 
     useLayoutEffect(() => {
         if (isError) {
-            setToastError(t("Error_AdminAccess"));
+            setToastError(t("Error_Forbidden"));
             navigate('/', { replace: true });
         }
     }, [user, isError, navigate, setToastError])

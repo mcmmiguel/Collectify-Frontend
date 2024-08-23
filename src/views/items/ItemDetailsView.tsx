@@ -85,7 +85,6 @@ const ItemDetailsView = () => {
             if (data.itemId === itemId) {
                 setComments(data.comments);
             }
-            console.log(comments);
         });
 
         socket.on("comment", (newComment: Comment) => {

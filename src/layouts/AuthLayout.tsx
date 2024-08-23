@@ -1,7 +1,7 @@
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import Logo from "@/components/Logo";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 const AuthLayout = () => {
     return (
@@ -9,7 +9,9 @@ const AuthLayout = () => {
             <div className="min-h-screen">
                 <div className="py-10 lg:py-5 mx-auto w-[450px]">
                     <div className="h-20 flex justify-center">
-                        <Logo />
+                        <Link to={'/'}>
+                            <Logo />
+                        </Link>
                     </div>
 
                     <div className="mt-3" >

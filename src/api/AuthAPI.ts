@@ -32,7 +32,6 @@ export async function getUser() {
         const url = '/auth/user';
         const { data } = await api<string>(url);
         const response = authUserSchema.safeParse(data);
-        console.log(response);
         if (response.success) return response.data;
     } catch (error) {
         if (isAxiosError(error) && error.response) {

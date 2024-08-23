@@ -39,7 +39,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     });
 
     useEffect(() => {
-        if (isError) {
+        if (!window.location.pathname.startsWith('/auth/')) {
             navigate('/auth/login', { replace: true });
         }
     }, [isError, error, navigate, queryClient]);

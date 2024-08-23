@@ -7,6 +7,7 @@ import { loginAPI } from "@/api/AuthAPI";
 import { UserLoginForm } from "@/types/index";
 import { useAuth } from "@/hooks/useAuth";
 import { useTranslation } from "react-i18next";
+import LoadingSpinner from "@/components/LoadingSpinner";
 
 const LoginView = () => {
 
@@ -18,7 +19,7 @@ const LoginView = () => {
     }
     const { register, handleSubmit, formState: { errors } } = useForm({ defaultValues: initialValues });
 
-    const { login } = useAuth();
+    const { login, isLoading } = useAuth();
 
     const { mutate, isPending } = useMutation({
         mutationFn: loginAPI,
@@ -31,6 +32,8 @@ const LoginView = () => {
     });
 
     const handleLogin = (formData: UserLoginForm) => mutate(formData);
+
+    if (isLoading) return <LoadingSpinner />
 
     return (
         <>
@@ -95,7 +98,7 @@ const LoginView = () => {
                         to={'/auth/register'}
                         className="text-link-light hover:text-hover-link-light"
                     >
-                        {t("Login_SignIn")}
+                        {t("Register_SignUp")}
                     </Link>
                 </p>
             </nav>

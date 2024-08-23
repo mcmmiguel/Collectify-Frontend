@@ -147,7 +147,7 @@ const RegisterView = () => {
                         to={'/auth/login'}
                         className="text-link-light hover:text-hover-link-light"
                     >
-                        {t("Register_SignUp")}
+                        {t("Login_SignIn")}
                     </Link>
                 </p>
             </nav>

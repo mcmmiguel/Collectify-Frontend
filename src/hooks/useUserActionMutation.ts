@@ -9,7 +9,9 @@ const useUserActionMutation = (action: (userId: string) => Promise<string | unde
     const { t } = useTranslation();
 
     return useMutation({
-        mutationFn: action,
+        mutationFn: async (userIds: string[]) => {
+            await Promise.allSettled(userIds.map(id => action(id)));
+        },
         onError: (error) => {
             toast.error(error.message);
         },

@@ -30,14 +30,16 @@ const AdminPanelView = () => {
     const { mutate: removeAdminMutation } = useUserActionMutation(removeAdmin);
     const { mutate: deleteUserMutation } = useUserActionMutation(deleteUser);
 
-    const handleUserAction = (actionName: string, mutationFn: UseMutateFunction<string | undefined, Error, string, unknown>) => {
+    const handleUserAction = (actionName: string, mutationFn: UseMutateFunction<void, Error, string[], unknown>) => {
         setDialogConfig({
             title: `${actionName}`,
             message: t("User_Message", { actionName: actionName.toLowerCase(), users: selectedUsers?.length }),
             isOpen: true,
             onConfirm: () => {
                 setDialogConfig(prev => ({ ...prev, isOpen: false }));
-                selectedUsers?.forEach(userId => mutationFn(userId));
+                if (selectedUsers && selectedUsers.length > 0) {
+                    mutationFn(selectedUsers);
+                }
             },
             onCancel: () => {
                 setDialogConfig(prev => ({ ...prev, isOpen: false }));

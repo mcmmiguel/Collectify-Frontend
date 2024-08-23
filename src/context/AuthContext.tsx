@@ -39,10 +39,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     });
 
     useEffect(() => {
-        if (!window.location.pathname.startsWith('/auth/')) {
+        if (isError && !window.location.pathname.startsWith('/auth/')) {
             navigate('/auth/login', { replace: true });
         }
-    }, [isError, error, navigate, queryClient]);
+    }, [isError, error, navigate]);
 
 
     const login = async () => {

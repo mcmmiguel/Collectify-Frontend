@@ -16,6 +16,7 @@ import ItemDetailsView from "./views/items/ItemDetailsView";
 import AdminLayout from "./layouts/AdminLayout";
 import AdminPanelView from "./views/admin/AdminPanelView";
 import ProfileView from "./views/profile/ProfileView";
+import SalesforceView from "./views/profile/CreateSalesforceContactView";
 
 export default function Router() {
     return (
@@ -40,6 +41,7 @@ export default function Router() {
                             <Route path="/collections/create" element={<CreateCollectionView />} />
                             <Route path="/collections/:collectionId/edit" element={<EditCollectionView />} />
                             <Route path="/profile" element={<ProfileView />} />
+                            <Route path="/profile/salesforce/send-contact" element={<SalesforceView />} />
                         </Route>
 
                         <Route element={<AdminLayout />}>

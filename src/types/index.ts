@@ -213,3 +213,15 @@ export type CollectionFormData = Pick<Collection, 'collectionName' | 'descriptio
 export type ImageFormData = {
     image: File[];
 };
+
+
+// SALESFORCE
+export const salesforceContact = z.object({
+    firstName: z.string(),
+    lastName: z.string(),
+    email: z.string(),
+    phone: z.string(),
+});
+
+export type SalesforceContact = z.infer<typeof salesforceContact>;
+export type SalesforceContactForm = Pick<SalesforceContact, 'firstName' | 'lastName' | 'email' | 'phone'>;

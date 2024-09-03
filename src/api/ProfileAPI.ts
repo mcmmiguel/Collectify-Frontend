@@ -8,7 +8,6 @@ export async function getCollectionsByOwner() {
     try {
         const { data } = await api(url);
         const response = z.array(ownerCategoryCollection).safeParse(data);
-        console.log(response);
         if (response.success) return response.data;
     } catch (error) {
         if (isAxiosError(error) && error.response) {

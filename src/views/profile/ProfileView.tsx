@@ -2,6 +2,7 @@ import { getCollectionsByOwner } from "@/api/ProfileAPI";
 import CollectionCard from "@/components/collections/CollectionCard";
 import Fab from "@/components/collections/FAB";
 import LoadingSpinner from "@/components/LoadingSpinner";
+import { SalesforceButton } from "@/components/salesforce/SalesforceButton";
 import { useAuth } from "@/hooks/useAuth"
 import { useQuery } from "@tanstack/react-query"
 import { useTranslation } from "react-i18next";
@@ -35,6 +36,7 @@ const ProfileView = () => {
                 )
             }
 
+            <SalesforceButton />
             <Fab />
 
             {data?.length === 0 && <p className="text-center text-text-light dark:text-text-dark">{t("Profile_NoCollections")}</p>}

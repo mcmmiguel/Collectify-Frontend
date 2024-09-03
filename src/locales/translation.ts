@@ -121,6 +121,7 @@ const resources = {
             "Profile_Title1": "Your collections in ",
             "Profile_Title2": "one place.",
             "Profile_NoCollections": "You don't have collections yet...",
+            "Profile_SalesforceButton": "Sign up for exclusive offers",
 
             // ADMIN PANEL
             "AdminPanel_Title1": "Manage all ",
@@ -153,7 +154,19 @@ const resources = {
             "ConfirmButton": "Confirm",
 
             // FOOTER
-            "Footer": "All rights reserved."
+            "Footer": "All rights reserved.",
+
+
+            // SALESFORCE
+            "SalesforceContact_Title": "Don't miss out on our latest updates!",
+            "SalesforceContact_Subtitle": "Complete the form to receive exclusive offers, personalized updates, and special content straight to your inbox.",
+            "SalesforceContact_FieldRequired": "This field is required",
+            "SalesforceContact_firstName": "First name",
+            "SalesforceContact_lastName": "Last name",
+            "SalesforceContact_Phone": "Phone",
+            "SalesforceContact_PhoneLength": "The phone must have exactly 10 digits",
+            "SalesforceContact_Send": "Send",
+            "SalesforceContact_SuccessMessage": "Thank you for staying connected!",
         }
     },
     es: {
@@ -274,6 +287,7 @@ const resources = {
             "Profile_Title1": "Tus colecciones en ",
             "Profile_Title2": "un solo lugar.",
             "Profile_NoCollections": "Aún no tienes colecciones...",
+            "Profile_SalesforceButton": "Regístrate para ofertas exclusivas",
 
             // ADMIN PANEL
             "AdminPanel_Title1": "Administra todos ",
@@ -306,7 +320,19 @@ const resources = {
             "ConfirmButton": "Confirmar",
 
             // FOOTER
-            "Footer": "Todos los derechos reservados."
+            "Footer": "Todos los derechos reservados.",
+
+
+            // SALESFORCE
+            "SalesforceContact_Title": "No te pierdas nuestras últimas novedades",
+            "SalesforceContact_Subtitle": "Llena el formulario para recibir ofertas exclusivas, actualizaciones personalizadas y contenido especial directo a tu bandeja.",
+            "SalesforceContact_FieldRequired": "Este campo es obligatorio",
+            "SalesforceContact_firstName": "Nombre",
+            "SalesforceContact_lastName": "Apellidos",
+            "SalesforceContact_Phone": "Teléfono",
+            "SalesforceContact_PhoneLength": "El teléfono debe tener 10 dígitos",
+            "SalesforceContact_Send": "Enviar",
+            "SalesforceContact_SuccessMessage": "¡Gracias por mantenerte conectado!",
         }
     }
 };

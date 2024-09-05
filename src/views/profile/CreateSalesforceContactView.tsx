@@ -18,7 +18,7 @@ const SalesforceView = () => {
         phone: '',
     }
 
-    const { register, formState: { errors }, handleSubmit } = useForm({ defaultValues: initialValues });
+    const { register, formState: { errors }, handleSubmit, reset } = useForm({ defaultValues: initialValues });
 
     const createContactMutation = useMutation({
         mutationFn: createSalesforceContact,
@@ -27,7 +27,8 @@ const SalesforceView = () => {
     });
 
     const handleForm = async (formData: SalesforceContactForm) => {
-        createContactMutation.mutate(formData)
+        createContactMutation.mutate(formData);
+        reset();
     };
 
     return (
